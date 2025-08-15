@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory & More - Premium Resin Art Creations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h2>Memory & More</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel Section -->
+    <section id="home" class="hero">
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <!-- Slide 1 - Custom Keychains -->
+                <div class="carousel-slide active">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <span class="slide-category">Custom Keychains</span>
+                            <h1 class="slide-title">Personalized <span class="highlight">Keychains</span></h1>
+                            <p class="slide-description">Carry your memories with you! Our custom resin keychains feature your photos, flowers, or special mementos preserved forever in crystal-clear resin.</p>
+                            <div class="slide-features">
+                                <span class="feature-tag">Photo Preservation</span>
+                                <span class="feature-tag">Dried Flowers</span>
+                                <span class="feature-tag">Durable Design</span>
+                            </div>
+                            <div class="slide-buttons">
+                                <a href="#gallery" class="btn btn-primary">View Keychains</a>
+                                <a href="#contact" class="btn btn-secondary">Order Custom</a>
+                            </div>
+                        </div>
+                        <div class="slide-image">
+                            <div class="image-placeholder ocean-theme">
+                                <img src="images/keychain.jpg" alt="Custom Resin Keychain" loading="lazy">
+                                <div class="floating-elements">
+                                    <div class="bubble bubble-1"></div>
+                                    <div class="bubble bubble-2"></div>
+                                    <div class="bubble bubble-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 - Varmala Preservation -->
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <span class="slide-category">Varmala Preservation</span>
+                            <h1 class="slide-title">Wedding <span class="highlight">Memories</span></h1>
+                            <p class="slide-description">Preserve your precious wedding varmala forever in stunning resin frames. Keep the beauty and memories of your special day alive for generations to come.</p>
+                            <div class="slide-features">
+                                <span class="feature-tag">Flower Preservation</span>
+                                <span class="feature-tag">Custom Frames</span>
+                                <span class="feature-tag">Lifetime Guarantee</span>
+                            </div>
+                            <div class="slide-buttons">
+                                <a href="#gallery" class="btn btn-primary">View Preserved Varmalas</a>
+                                <a href="#contact" class="btn btn-secondary">Preserve Yours</a>
+                            </div>
+                        </div>
+                        <div class="slide-image">
+                            <div class="image-placeholder abstract-theme">
+                                <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Preserved Wedding Flowers in Resin" loading="lazy">
+                                <div class="floating-elements">
+                                    <div class="color-swirl swirl-1"></div>
+                                    <div class="color-swirl swirl-2"></div>
+                                    <div class="color-swirl swirl-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 - Resin Clocks -->
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <span class="slide-category">Resin Clocks</span>
+                            <h1 class="slide-title">Functional <span class="highlight">Art</span></h1>
+                            <p class="slide-description">Transform time into art with our stunning resin clocks. Each piece combines functionality with beauty, featuring mesmerizing patterns and vibrant colors.</p>
+                            <div class="slide-features">
+                                <span class="feature-tag">Quartz Movement</span>
+                                <span class="feature-tag">Custom Designs</span>
+                                <span class="feature-tag">Wall & Table</span>
+                            </div>
+                            <div class="slide-buttons">
+                                <a href="#gallery" class="btn btn-primary">View Clock Collection</a>
+                                <a href="#contact" class="btn btn-secondary">Design Custom Clock</a>
+                            </div>
+                        </div>
+                        <div class="slide-image">
+                            <div class="image-placeholder geode-theme">
+                                <img src="images/epoxywatch.png" alt="Resin Art Clock" loading="lazy">
+                                <div class="floating-elements">
+                                    <div class="crystal crystal-1"></div>
+                                    <div class="crystal crystal-2"></div>
+                                    <div class="crystal crystal-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4 - Resin Coasters & Decor -->
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <span class="slide-category">Home Decor Collection</span>
+                            <h1 class="slide-title">Elegant <span class="highlight">Coasters</span></h1>
+                            <p class="slide-description">Add a touch of elegance to your home with our premium resin coasters, serving trays, and decorative items. Perfect for gifting or elevating your space.</p>
+                            <div class="slide-features">
+                                <span class="feature-tag">Heat Resistant</span>
+                                <span class="feature-tag">Gift Sets Available</span>
+                                <span class="feature-tag">Custom Colors</span>
+                            </div>
+                            <div class="slide-buttons">
+                                <a href="#services" class="btn btn-primary">Shop Home Decor</a>
+                                <a href="#contact" class="btn btn-secondary">Custom Order</a>
+                            </div>
+                        </div>
+                        <div class="slide-image">
+                            <div class="image-placeholder custom-theme">
+                                <img src="images/puja_thali.png" alt="Resin Coasters and Home Decor" loading="lazy">
+                                <div class="floating-elements">
+                                    <div class="sparkle sparkle-1"></div>
+                                    <div class="sparkle sparkle-2"></div>
+                                    <div class="sparkle sparkle-3"></div>
+                                    <div class="sparkle sparkle-4"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Navigation -->
+            <div class="carousel-nav">
+                <button class="carousel-btn prev-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <button class="indicator active" data-slide="0"></button>
+                <button class="indicator" data-slide="1"></button>
+                <button class="indicator" data-slide="2"></button>
+                <button class="indicator" data-slide="3"></button>
+            </div>
+
+            <!-- Product Info Cards -->
+            <!-- <div class="product-info-cards">
+                <div class="info-card">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h4>Free Shipping</h4>
+                    <p>On orders over ₹200</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-certificate"></i>
+                    <h4>Guaranteed Quality</h4>
+                    <p>Premium materials only</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-paint-brush"></i>
+                    <h4>Custom Designs</h4>
+                    <p>Tailored to your vision</p>
+                </div>
+            </div> -->
+        </div>
+        
+        <div class="hero-scroll">
+            <span>Scroll to explore</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Our Art</h2>
+                <p>Where creativity meets craftsmanship</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Passion Meets Precision</h3>
+                    <p>Every piece of resin art we create is born from a deep passion for fluid dynamics and color theory. Using premium epoxy resins and carefully selected pigments, we craft one-of-a-kind artworks that capture movement, emotion, and natural beauty.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-gem"></i>
+                            <div>
+                                <h4>Premium Materials</h4>
+                                <p>Only the finest epoxy resins and archival pigments</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-hand-sparkles"></i>
+                            <div>
+                                <h4>Handcrafted Excellence</h4>
+                                <p>Each piece is meticulously created by skilled artisans</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-infinity"></i>
+                            <div>
+                                <h4>Timeless Beauty</h4>
+                                <p>Durable artworks that maintain their beauty for decades</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <img src="images/material.jpg" alt="Artist creating resin art" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Gallery</h2>
+                <p>Explore our stunning collection of resin art pieces</p>
+            </div>
+            <div class="gallery-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="keychains">Keychains</button>
+                <button class="filter-btn" data-filter="varmala">Varmala</button>
+                <button class="filter-btn" data-filter="clocks">Clocks</button>
+                <button class="filter-btn" data-filter="home-decor">Home Decor</button>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-category="keychains">
+                    <div class="image-placeholder">
+                        <img src="https://www.lunacreations.co.uk/wp-content/uploads/2024/03/IMG_7237-scaled.jpg" alt="Custom Photo Keychain" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/keychain1/800/600'">
+                        <div class="overlay">
+                            <h4>Photo Keychains</h4>
+                            <p>Custom Collection</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="varmala">
+                    <div class="image-placeholder">
+                        <img src="images/varmala1.jpg" alt="Preserved Wedding Varmala" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/varmala1/800/600'">
+                        <div class="overlay">
+                            <h4>Varmala Preservation</h4>
+                            <p>Wedding Memories</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="varmala">
+                    <div class="image-placeholder">
+                        <img src="images/varmala2.webp" alt="Preserved Varmala Frame" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/varmala2/800/600'">
+                        <div class="overlay">
+                            <h4>Preserved Varmala Frame</h4>
+                            <p>Frame & Display</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="varmala">
+                    <div class="image-placeholder">
+                        <img src="images/varmala2.webp" alt="Preserved Varmala Frame" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/varmala2/800/600'">
+                        <div class="overlay">
+                            <h4>Preserved Varmala Frame</h4>
+                            <p>Frame & Display</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="clocks">
+                    <div class="image-placeholder">
+                        <img src="https://saashi.co.in/wp-content/uploads/2024/05/Handcrafted-Ocean-Epoxy-Resin-Wall-Clock-%E2%80%93-Coastal-Elegance-for-Your-Home-3.jpg" alt="Resin Wall Clock" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/clock1/800/600'">
+                        <div class="overlay">
+                            <h4>Wall Clocks</h4>
+                            <p>Functional Art</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="gallery-item" data-category="clocks">
+                    <div class="image-placeholder">
+                        <img src="https://phooldaan.com/wp-content/uploads/2023/12/IMG-20231223-WA0471.jpg" alt="Resin Wall Clock" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/clock1/800/600'">
+                        <div class="overlay">
+                            <h4>Wall Clocks</h4>
+                            <p>Functional Art</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="home-decor">
+                    <div class="image-placeholder">
+                        <img src="https://cdn.shopify.com/s/files/1/0576/5106/9108/files/unnamed_1_480x480.png?v=1734356290e" alt="Resin Coaster Set" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/coaster1/800/600'">
+                        <div class="overlay">
+                            <h4>Coaster Sets</h4>
+                            <p>Home Decor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="keychains">
+                    <div class="image-placeholder">
+                        <img src="https://i.pinimg.com/736x/59/fe/cf/59fecfdbab3d93e1c201ab40c779018c.jpg" alt="Flower Preserved Keychain" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/keychain2/800/600'">
+                        <div class="overlay">
+                            <h4>Flower Keychains</h4>
+                            <p>Nature Preserved</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="clocks">
+                    <div class="image-placeholder">
+                        <img src="https://customcraft.in/cdn/shop/products/CreamLightWithShells_4.jpg?v=1677502513" alt="Blue Resin Table Clock" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/clock2/800/600'">
+                        <div class="overlay">
+                            <h4>Table Clocks</h4>
+                            <p>Desktop Art</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="home-decor">
+                    <div class="image-placeholder">
+                        <img src="https://i.etsystatic.com/25272380/r/il/588a8a/6058604640/il_fullxfull.6058604640_9h1k.jpg" alt="Resin Tray Home Decor" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/tray1/800/600'">
+                        <div class="overlay">
+                            <h4>Home Decor</h4>
+                            <p>Resin Trays & Accents</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="home-decor">
+                    <div class="image-placeholder">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdjqLSNnnyBQmzTHwI02jlhvBa9X8yVV4YcA&s" alt="Resin Serving Tray" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/tray2/800/600'">
+                        <div class="overlay">
+                            <h4>Serving Trays</h4>
+                            <p>Gift Ready</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="keychains">
+                    <div class="image-placeholder">
+                        <img src="https://m.media-amazon.com/images/I/71gDDVhwhcL.jpg" alt="Assorted Resin Pieces" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/jewelry1/800/600'">
+                        <div class="overlay">
+                            <h4>Assorted Pieces</h4>
+                            <p>Jewelry & Small Decor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>From concept to creation, we bring your vision to life</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Custom Keychains</h3>
+                    <p>Preserve your precious memories in beautiful custom keychains. Perfect for photos, dried flowers, or special mementos.</p>
+                    <ul>
+                        <li>Photo preservation in resin</li>
+                        <li>Dried flower embedding</li>
+                        <li>Personalized text options</li>
+                        <li>Durable key ring attachment</li>
+                    </ul>
+                    <a href="#contact" class="service-btn">Order Keychain</a>
+                </div>
+                <div class="service-card featured">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Varmala Preservation</h3>
+                    <p>Preserve your wedding varmala in stunning resin frames. Keep your special day memories alive forever with our expert preservation techniques.</p>
+                    <ul>
+                        <li>Professional flower drying</li>
+                        <li>Custom frame designs</li>
+                        <li>UV protection coating</li>
+                        <li>Lifetime preservation guarantee</li>
+                    </ul>
+                    <a href="#contact" class="service-btn">Preserve Varmala</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Resin Clocks & Decor</h3>
+                    <p>Transform your space with functional resin art. From clocks to coasters, we create beautiful pieces that serve a purpose.</p>
+                    <ul>
+                        <li>Wall and table clocks</li>
+                        <li>Coaster sets</li>
+                        <li>Serving trays</li>
+                        <li>Home decor accessories</li>
+                    </ul>
+                    <a href="#contact" class="service-btn">Shop Decor</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Clients Say</h2>
+                <p>Hear from our satisfied customers</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"The resin art piece we commissioned completely transformed our living room. The colors flow beautifully and catch the light in the most amazing way."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <span>Interior Designer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Exceptional quality and attention to detail. The workshop was incredibly informative and fun. I now have a beautiful piece of art I created myself!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <span>Art Enthusiast</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Professional service from start to finish. They understood our vision perfectly and delivered a masterpiece that exceeded our expectations."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Emma Rodriguez</h4>
+                            <span>Business Owner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Ready to create something beautiful together?</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Start Your Project</h3>
+                    <p>Whether you're looking for a custom commission, interior design consultation, or want to join one of our workshops, we'd love to hear from you.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Studio Location</h4>
+                                <p>123 Art District Street<br>Creative City, CC 12345</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>hello@artflowresin.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="service" name="service" required>
+                            <option value="">Select a Service</option>
+                            <option value="commission">Custom Commission</option>
+                            <option value="consultation">Design Consultation</option>
+                            <option value="workshop">Workshop/Class</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Tell us about your project..." rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Memory & More</h3>
+                    <p>Creating stunning resin art that transforms spaces and inspires souls.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#services">Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#contact">Custom Commissions</a></li>
+                        <li><a href="#contact">Design Consulting</a></li>
+                        <li><a href="#contact">Workshops</a></li>
+                        <li><a href="#contact">Corporate Art</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Memory & More. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
