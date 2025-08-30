@@ -13,6 +13,123 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
     navMenu.classList.remove('active');
 }));
 
+// Search Functionality
+class SearchManager {
+    constructor() {
+        this.searchInput = document.querySelector('.search-input');
+        this.searchBtn = document.querySelector('.search-btn');
+        this.mobileSearchIcon = document.querySelector('.mobile-search-icon');
+        this.init();
+    }
+    
+    init() {
+        if (this.searchInput && this.searchBtn) {
+            this.searchBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.performSearch();
+            });
+            
+            this.searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    this.performSearch();
+                }
+            });
+        }
+        
+        if (this.mobileSearchIcon) {
+            this.mobileSearchIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showMobileSearch();
+            });
+        }
+    }
+    
+    performSearch() {
+        const query = this.searchInput ? this.searchInput.value.trim() : '';
+        if (query) {
+            console.log('Searching for:', query);
+            // Here you would typically filter products or redirect to search results
+            // For now, we'll just show an alert
+            alert(`Searching for: "${query}"`);
+            // You can implement actual search logic here
+            this.filterProducts(query);
+        }
+    }
+    
+    filterProducts(query) {
+        // This is a placeholder for product filtering logic
+        // You would implement actual product filtering based on your data structure
+        const products = document.querySelectorAll('.category-item, .carousel-card');
+        products.forEach(product => {
+            const title = product.querySelector('h4, .card-title')?.textContent.toLowerCase() || '';
+            const description = product.querySelector('p, .card-description')?.textContent.toLowerCase() || '';
+            
+            if (title.includes(query.toLowerCase()) || description.includes(query.toLowerCase())) {
+                product.style.display = 'block';
+                product.style.opacity = '1';
+            } else {
+                product.style.opacity = '0.3';
+            }
+        });
+    }
+    
+    showMobileSearch() {
+        // Create a mobile search overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'mobile-search-overlay';
+        overlay.innerHTML = `
+            <div class="mobile-search-container">
+                <div class="mobile-search-header">
+                    <button class="close-search">&times;</button>
+                    <h3>Search Products</h3>
+                </div>
+                <div class="mobile-search-box">
+                    <input type="text" class="mobile-search-input" placeholder="Search products..." autofocus>
+                    <button class="mobile-search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(overlay);
+        
+        // Add event listeners for mobile search
+        const mobileInput = overlay.querySelector('.mobile-search-input');
+        const mobileBtn = overlay.querySelector('.mobile-search-btn');
+        const closeBtn = overlay.querySelector('.close-search');
+        
+        closeBtn.addEventListener('click', () => {
+            document.body.removeChild(overlay);
+        });
+        
+        mobileBtn.addEventListener('click', () => {
+            const query = mobileInput.value.trim();
+            if (query) {
+                this.filterProducts(query);
+                document.body.removeChild(overlay);
+            }
+        });
+        
+        mobileInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const query = mobileInput.value.trim();
+                if (query) {
+                    this.filterProducts(query);
+                    document.body.removeChild(overlay);
+                }
+            }
+        });
+        
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);
+            }
+        });
+    }
+}
+
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
@@ -27,21 +144,53 @@ window.addEventListener('scroll', () => {
 class HeroCarousel {
     constructor() {
         this.currentSlide = 0;
-        this.slides = document.querySelectorAll('.carousel-slide');
-        this.indicators = document.querySelectorAll('.indicator');
+        this.cards = document.querySelectorAll('.carousel-card');
         this.track = document.querySelector('.carousel-track');
         this.prevBtn = document.querySelector('.prev-btn');
         this.nextBtn = document.querySelector('.next-btn');
-        this.totalSlides = this.slides.length;
+        this.currentSlideElement = document.querySelector('.current-slide');
+        this.totalSlidesElement = document.querySelector('.total-slides');
+        this.totalCards = this.cards.length;
         this.autoSlideInterval = null;
+        this.cardWidth = 0;
+        this.gap = 32; // 2rem in pixels
+        this.cardsPerView = this.getCardsPerView();
         
         this.init();
     }
     
     init() {
+        this.calculateCardWidth();
+        this.updateTotalSlides();
         this.bindEvents();
-        this.startAutoSlide();
+        // Removed auto-slide functionality
         this.updateCarousel();
+        
+        // Recalculate on window resize
+        window.addEventListener('resize', () => {
+            this.calculateCardWidth();
+            this.cardsPerView = this.getCardsPerView();
+            this.updateCarousel();
+        });
+    }
+    
+    getCardsPerView() {
+        if (window.innerWidth <= 480) return 1.1;
+        if (window.innerWidth <= 768) return 1.25;
+        if (window.innerWidth <= 1200) return 2.2;
+        return 2.5;
+    }
+    
+    calculateCardWidth() {
+        if (this.cards.length > 0) {
+            const containerWidth = this.track.parentElement.offsetWidth - 40; // minus padding
+            this.cardWidth = (containerWidth / this.cardsPerView) - this.gap + (this.gap / this.cardsPerView);
+        }
+    }
+    
+    updateTotalSlides() {
+        const maxSlides = Math.max(1, this.totalCards - Math.floor(this.cardsPerView) + 1);
+        this.totalSlidesElement.textContent = maxSlides;
     }
     
     bindEvents() {
@@ -49,21 +198,13 @@ class HeroCarousel {
         this.prevBtn.addEventListener('click', () => this.prevSlide());
         this.nextBtn.addEventListener('click', () => this.nextSlide());
         
-        // Indicator buttons
-        this.indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => this.goToSlide(index));
-        });
-        
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') this.prevSlide();
             if (e.key === 'ArrowRight') this.nextSlide();
         });
         
-        // Pause auto-slide on hover
-        const carousel = document.querySelector('.carousel-container');
-        carousel.addEventListener('mouseenter', () => this.stopAutoSlide());
-        carousel.addEventListener('mouseleave', () => this.startAutoSlide());
+        // Removed auto-slide hover events since auto-slide is disabled
         
         // Touch/swipe support
         this.addTouchSupport();
@@ -80,7 +221,7 @@ class HeroCarousel {
             startX = e.touches[0].clientX;
             startY = e.touches[0].clientY;
             isDragging = false;
-            this.stopAutoSlide(); // Pause auto-slide when user touches
+            // Removed auto-slide stop since auto-slide is disabled
         }, { passive: true });
         
         this.track.addEventListener('touchmove', (e) => {
@@ -90,7 +231,6 @@ class HeroCarousel {
                 const diffX = Math.abs(currentX - startX);
                 const diffY = Math.abs(currentY - startY);
                 
-                // Only prevent default if horizontal swipe is detected
                 if (diffX > diffY && diffX > 10) {
                     isDragging = true;
                     e.preventDefault();
@@ -102,7 +242,7 @@ class HeroCarousel {
             endX = e.changedTouches[0].clientX;
             endY = e.changedTouches[0].clientY;
             this.handleSwipe();
-            this.startAutoSlide(); // Resume auto-slide after touch ends
+            // Removed auto-slide restart since auto-slide is disabled
         }, { passive: true });
         
         const handleSwipe = () => {
@@ -110,7 +250,6 @@ class HeroCarousel {
             const diffX = startX - endX;
             const diffY = Math.abs(startY - endY);
             
-            // Only trigger swipe if horizontal movement is greater than vertical
             if (Math.abs(diffX) > swipeThreshold && Math.abs(diffX) > diffY) {
                 if (diffX > 0) {
                     this.nextSlide();
@@ -124,64 +263,83 @@ class HeroCarousel {
     }
     
     updateCarousel() {
-        // Update track position
-        const translateX = -this.currentSlide * 25;
-        this.track.style.transform = `translateX(${translateX}%)`;
+        // Calculate the maximum slide position
+        const maxSlide = Math.max(0, this.totalCards - Math.floor(this.cardsPerView));
+        this.currentSlide = Math.min(this.currentSlide, maxSlide);
         
-        // Update slides
-        this.slides.forEach((slide, index) => {
-            slide.classList.toggle('active', index === this.currentSlide);
-        });
+        // Calculate the translate distance
+        const translateX = -this.currentSlide * (this.cardWidth + this.gap);
+        this.track.style.transform = `translateX(${translateX}px)`;
         
-        // Update indicators
-        this.indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === this.currentSlide);
-        });
+        // Update slide indicator
+        this.currentSlideElement.textContent = this.currentSlide + 1;
         
-        // Animate slide content
-        this.animateSlideContent();
+        // Update button states
+        this.updateButtonStates();
+        
+        // Add animation class to visible cards
+        this.animateVisibleCards();
     }
     
-    animateSlideContent() {
-        const activeSlide = this.slides[this.currentSlide];
-        const slideText = activeSlide.querySelector('.slide-text');
-        const slideImage = activeSlide.querySelector('.slide-image');
+    updateButtonStates() {
+        const maxSlide = Math.max(0, this.totalCards - Math.floor(this.cardsPerView));
         
-        // Reset animations
-        slideText.style.animation = 'none';
-        slideImage.style.animation = 'none';
+        this.prevBtn.style.opacity = this.currentSlide === 0 ? '0.5' : '1';
+        this.nextBtn.style.opacity = this.currentSlide >= maxSlide ? '0.5' : '1';
         
-        // Trigger reflow
-        slideText.offsetHeight;
-        slideImage.offsetHeight;
-        
-        // Apply animations
-        slideText.style.animation = 'slideInLeft 0.8s ease-out';
-        slideImage.style.animation = 'slideInRight 0.8s ease-out';
+        this.prevBtn.style.pointerEvents = this.currentSlide === 0 ? 'none' : 'all';
+        this.nextBtn.style.pointerEvents = this.currentSlide >= maxSlide ? 'none' : 'all';
+    }
+    
+    animateVisibleCards() {
+        this.cards.forEach((card, index) => {
+            const isVisible = index >= this.currentSlide && index < this.currentSlide + Math.ceil(this.cardsPerView);
+            
+            if (isVisible) {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }
+        });
     }
     
     nextSlide() {
-        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+        const maxSlide = Math.max(0, this.totalCards - Math.floor(this.cardsPerView));
+        
+        if (this.currentSlide < maxSlide) {
+            this.currentSlide++;
+        } else {
+            this.currentSlide = 0; // Loop back to start
+        }
+        
         this.updateCarousel();
-        this.resetAutoSlide();
+        // Removed auto-slide reset since auto-slide is disabled
     }
     
     prevSlide() {
-        this.currentSlide = this.currentSlide === 0 ? this.totalSlides - 1 : this.currentSlide - 1;
+        if (this.currentSlide > 0) {
+            this.currentSlide--;
+        } else {
+            // Loop to end
+            this.currentSlide = Math.max(0, this.totalCards - Math.floor(this.cardsPerView));
+        }
+        
         this.updateCarousel();
-        this.resetAutoSlide();
+        // Removed auto-slide reset since auto-slide is disabled
     }
     
     goToSlide(index) {
-        this.currentSlide = index;
+        const maxSlide = Math.max(0, this.totalCards - Math.floor(this.cardsPerView));
+        this.currentSlide = Math.min(Math.max(0, index), maxSlide);
         this.updateCarousel();
-        this.resetAutoSlide();
+        // Removed auto-slide reset since auto-slide is disabled
     }
     
+    // Auto-slide methods disabled - carousel is now manual only
+    /*
     startAutoSlide() {
         this.autoSlideInterval = setInterval(() => {
             this.nextSlide();
-        }, 5000);
+        }, 4000); // Changed to 4 seconds for better user experience
     }
     
     stopAutoSlide() {
@@ -193,13 +351,19 @@ class HeroCarousel {
     
     resetAutoSlide() {
         this.stopAutoSlide();
-        this.startAutoSlide();
+        setTimeout(() => {
+            this.startAutoSlide();
+        }, 1000); // Wait 1 second before restarting auto-slide
     }
+    */
 }
 
 // Initialize carousel when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new HeroCarousel();
+    
+    // Initialize category navigation
+    initCategoryNavigation();
     
     // Mobile-specific optimizations
     if (window.innerWidth <= 768) {
@@ -281,28 +445,63 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Gallery Filter Functionality
-const filterButtons = document.querySelectorAll('.filter-btn');
-const galleryItems = document.querySelectorAll('.gallery-item');
-
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        // Add active class to clicked button
-        button.classList.add('active');
+// Category Section Animations
+function animateOnScroll() {
+    const categoryItems = document.querySelectorAll('.category-item, .workshop-item, .gift-set-item');
+    
+    categoryItems.forEach(item => {
+        const itemTop = item.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
         
-        const filterValue = button.getAttribute('data-filter');
-        
-        galleryItems.forEach(item => {
-            if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                item.style.display = 'block';
-                item.style.animation = 'fadeInUp 0.5s ease-out';
-            } else {
-                item.style.display = 'none';
-            }
-        });
+        if (itemTop < windowHeight * 0.8) {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+        }
     });
+}
+
+// Initialize category items for animation
+document.addEventListener('DOMContentLoaded', () => {
+    const categoryItems = document.querySelectorAll('.category-item, .workshop-item, .gift-set-item');
+    
+    categoryItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+    
+    // Trigger initial animation check
+    animateOnScroll();
+});
+
+// Add scroll listener for animations
+window.addEventListener('scroll', animateOnScroll);
+
+// Enhanced category item interactions
+document.querySelectorAll('.category-item').forEach(item => {
+    item.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-15px) scale(1.02)';
+    });
+    
+    item.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+    });
+});
+
+// Add loading animation for category images
+document.querySelectorAll('.category-item').forEach(item => {
+    const img = item.querySelector('img');
+    if (img) {
+        img.addEventListener('load', function() {
+            this.style.opacity = '1';
+            this.style.transform = 'scale(1)';
+        });
+        
+        // Set initial state
+        img.style.opacity = '0';
+        img.style.transform = 'scale(1.1)';
+        img.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    }
 });
 
 // Contact Form Handling
@@ -462,15 +661,16 @@ document.querySelectorAll('.service-card').forEach(card => {
     });
 });
 
-// Add loading animation for gallery images
-document.querySelectorAll('.gallery-item').forEach(item => {
+// Add click interactions for category items
+document.querySelectorAll('.category-item').forEach(item => {
     item.addEventListener('click', function() {
         const overlay = this.querySelector('.overlay');
         if (overlay) {
-            overlay.style.opacity = '1';
+            // Add a subtle pulse effect
+            this.style.transform = 'scale(0.98)';
             setTimeout(() => {
-                overlay.style.opacity = '0';
-            }, 2000);
+                this.style.transform = 'scale(1)';
+            }, 150);
         }
     });
 });
@@ -585,6 +785,70 @@ document.addEventListener('keydown', (e) => {
         
         allFilters[currentIndex].click();
     }
+});
+
+// Category Navigation Functionality
+function initCategoryNavigation() {
+    const categoryItems = document.querySelectorAll('.category-item');
+    
+    categoryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // Remove active class from all items
+            categoryItems.forEach(categoryItem => {
+                categoryItem.classList.remove('active');
+            });
+            
+            // Add active class to clicked item
+            item.classList.add('active');
+            
+            // Get category name
+            const categoryName = item.querySelector('.category-name').textContent;
+            
+            // Here you can add logic to filter carousel content based on category
+            console.log(`Selected category: ${categoryName}`);
+            
+            // Add visual feedback
+            item.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                item.style.transform = '';
+            }, 150);
+        });
+        
+        // Add hover effect
+        item.addEventListener('mouseenter', () => {
+            if (!item.classList.contains('active')) {
+                item.style.transform = 'translateY(-2px)';
+            }
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            if (!item.classList.contains('active')) {
+                item.style.transform = '';
+            }
+        });
+    });
+    
+    // Make category navigation scrollable on mobile
+    const categoryNav = document.querySelector('.category-navigation');
+    if (categoryNav && window.innerWidth <= 480) {
+        // Enable horizontal scrolling on mobile
+        let isScrolling = false;
+        
+        categoryNav.addEventListener('touchstart', () => {
+            isScrolling = true;
+        });
+        
+        categoryNav.addEventListener('touchend', () => {
+            setTimeout(() => {
+                isScrolling = false;
+            }, 100);
+        });
+    }
+}
+
+// Initialize all components when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new SearchManager();
 });
 
 console.log('🎨 ArtFlow Resin website loaded successfully!');

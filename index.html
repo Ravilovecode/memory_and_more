@@ -13,15 +13,79 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <h2>Memory & More</h2>
+                <img src="images/main_logo.png" alt="Memory & More Logo">
+                <h2>Memories & More</h2>
             </div>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder=" ">
+                    <label class="search-floating-label">Search products...</label>
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    
+                    <!-- Search Suggestions Dropdown -->
+                    <div class="search-suggestions">
+                        <div class="search-suggestion-item">
+                            <i class="fas fa-key search-suggestion-icon"></i>
+                            <span class="search-suggestion-text">Keychains</span>
+                            <span class="search-suggestion-category">Category</span>
+                        </div>
+                        <div class="search-suggestion-item">
+                            <i class="fas fa-heart search-suggestion-icon"></i>
+                            <span class="search-suggestion-text">Varmala</span>
+                            <span class="search-suggestion-category">Category</span>
+                        </div>
+                        <div class="search-suggestion-item">
+                            <i class="fas fa-clock search-suggestion-icon"></i>
+                            <span class="search-suggestion-text">Wall Clocks</span>
+                            <span class="search-suggestion-category">Category</span>
+                        </div>
+                        <div class="search-suggestion-item">
+                            <i class="fas fa-home search-suggestion-icon"></i>
+                            <span class="search-suggestion-text">Home Decor</span>
+                            <span class="search-suggestion-category">Category</span>
+                        </div>
+                        <div class="search-suggestion-item">
+                            <i class="fas fa-search search-suggestion-icon"></i>
+                            <span class="search-suggestion-text">Resin Art Keychain</span>
+                            <span class="search-suggestion-category">Product</span>
+                        </div>
+                        <div class="search-suggestion-item">
+                            <i class="fas fa-search search-suggestion-icon"></i>
+                            <span class="search-suggestion-text">Custom Photo Frame</span>
+                            <span class="search-suggestion-category">Product</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#keychains" class="nav-link">Categories</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
+            
+            <!-- Action Icons -->
+            <div class="nav-icons">
+                <a href="#wishlist" class="nav-icon" title="Wishlist">
+                    <i class="fas fa-heart"></i>
+                    <span class="icon-badge">3</span>
+                </a>
+                <a href="#cart" class="nav-icon" title="Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="icon-badge">2</span>
+                </a>
+                <a href="#account" class="nav-icon" title="Account">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+            
             <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -32,123 +96,128 @@
 
     <!-- Hero Carousel Section -->
     <section id="home" class="hero">
+        <div class="hero-header">
+            <div class="category-navigation">
+                <div class="category-item active">
+                    <span class="category-name">Birthday</span>
+                </div>
+                <div class="category-item">
+                    <span class="category-name">Occasions</span>
+                </div>
+                <div class="category-item">
+                    <span class="category-name">Anniversary</span>
+                </div>
+                <div class="category-item">
+                    <span class="category-name">Flowers</span>
+                </div>
+                <div class="category-item">
+                    <span class="category-name">Cakes</span>
+                </div>
+                <div class="category-item">
+                    <span class="category-name">Personalised</span>
+                </div>
+                <div class="category-item">
+                    <span class="category-name">Plants</span>
+                </div>
+                <div class="category-item">
+                    <span class="category-name">Chocolates</span>
+                </div>
+                <div class="category-item">
+                    <span class="category-name">Luxe</span>
+                </div>
+            </div>
+        </div>
+        
         <div class="carousel-container">
             <div class="carousel-track">
-                <!-- Slide 1 - Custom Keychains -->
-                <div class="carousel-slide active">
-                    <div class="slide-content">
-                        <div class="slide-text">
-                            <span class="slide-category">Custom Keychains</span>
-                            <h1 class="slide-title">Personalized <span class="highlight">Keychains</span></h1>
-                            <p class="slide-description">Carry your memories with you! Our custom resin keychains feature your photos, flowers, or special mementos preserved forever in crystal-clear resin.</p>
-                            <div class="slide-features">
-                                <span class="feature-tag">Photo Preservation</span>
-                                <span class="feature-tag">Dried Flowers</span>
-                                <span class="feature-tag">Durable Design</span>
-                            </div>
-                            <div class="slide-buttons">
-                                <a href="#gallery" class="btn btn-primary">View Keychains</a>
-                                <a href="#contact" class="btn btn-secondary">Order Custom</a>
-                            </div>
-                        </div>
-                        <div class="slide-image">
-                            <div class="image-placeholder ocean-theme">
-                                <img src="images/keychain.jpg" alt="Custom Resin Keychain" loading="lazy">
-                                <div class="floating-elements">
-                                    <div class="bubble bubble-1"></div>
-                                    <div class="bubble bubble-2"></div>
-                                    <div class="bubble bubble-3"></div>
+                <!-- Card 1 - Custom Keychains -->
+                <div class="carousel-card">
+                    <div class="card-image">
+                        <img src="images/keychain.jpg" alt="Custom Resin Keychain" loading="lazy">
+                        <div class="card-overlay">
+                            <div class="card-content">
+                                <span class="card-badge">Popular</span>
+                                <span class="card-category">Custom Keychains</span>
+                                <h3 class="card-title">Personalized <span class="highlight-white">Keychains</span></h3>
+                                <p class="card-description">Carry your memories with you! Custom resin keychains with photos and flowers.</p>
+                                <div class="card-price">Starting from ₹299</div>
+                                <div class="card-buttons">
+                                    <a href="#keychains" class="btn btn-primary">VIEW COLLECTION</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Slide 2 - Varmala Preservation -->
-                <div class="carousel-slide">
-                    <div class="slide-content">
-                        <div class="slide-text">
-                            <span class="slide-category">Varmala Preservation</span>
-                            <h1 class="slide-title">Wedding <span class="highlight">Memories</span></h1>
-                            <p class="slide-description">Preserve your precious wedding varmala forever in stunning resin frames. Keep the beauty and memories of your special day alive for generations to come.</p>
-                            <div class="slide-features">
-                                <span class="feature-tag">Flower Preservation</span>
-                                <span class="feature-tag">Custom Frames</span>
-                                <span class="feature-tag">Lifetime Guarantee</span>
-                            </div>
-                            <div class="slide-buttons">
-                                <a href="#gallery" class="btn btn-primary">View Preserved Varmalas</a>
-                                <a href="#contact" class="btn btn-secondary">Preserve Yours</a>
-                            </div>
-                        </div>
-                        <div class="slide-image">
-                            <div class="image-placeholder abstract-theme">
-                                <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Preserved Wedding Flowers in Resin" loading="lazy">
-                                <div class="floating-elements">
-                                    <div class="color-swirl swirl-1"></div>
-                                    <div class="color-swirl swirl-2"></div>
-                                    <div class="color-swirl swirl-3"></div>
+                <!-- Card 2 - Varmala Preservation -->
+                <div class="carousel-card">
+                    <div class="card-image">
+                        <img src="images/varmala1.jpg" alt="Preserved Wedding Varmala" loading="lazy">
+                        <div class="card-overlay">
+                            <div class="card-content">
+                                <span class="card-badge">Premium</span>
+                                <span class="card-category">Varmala Preservation</span>
+                                <h3 class="card-title">Wedding <span class="highlight-white">Memories</span></h3>
+                                <p class="card-description">Preserve your precious wedding varmala forever in stunning resin frames.</p>
+                                <div class="card-price">Starting from ₹1,299</div>
+                                <div class="card-buttons">
+                                    <a href="#varmala" class="btn btn-primary">PRESERVE YOURS</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Slide 3 - Resin Clocks -->
-                <div class="carousel-slide">
-                    <div class="slide-content">
-                        <div class="slide-text">
-                            <span class="slide-category">Resin Clocks</span>
-                            <h1 class="slide-title">Functional <span class="highlight">Art</span></h1>
-                            <p class="slide-description">Transform time into art with our stunning resin clocks. Each piece combines functionality with beauty, featuring mesmerizing patterns and vibrant colors.</p>
-                            <div class="slide-features">
-                                <span class="feature-tag">Quartz Movement</span>
-                                <span class="feature-tag">Custom Designs</span>
-                                <span class="feature-tag">Wall & Table</span>
-                            </div>
-                            <div class="slide-buttons">
-                                <a href="#gallery" class="btn btn-primary">View Clock Collection</a>
-                                <a href="#contact" class="btn btn-secondary">Design Custom Clock</a>
-                            </div>
-                        </div>
-                        <div class="slide-image">
-                            <div class="image-placeholder geode-theme">
-                                <img src="images/epoxywatch.png" alt="Resin Art Clock" loading="lazy">
-                                <div class="floating-elements">
-                                    <div class="crystal crystal-1"></div>
-                                    <div class="crystal crystal-2"></div>
-                                    <div class="crystal crystal-3"></div>
+                <!-- Card 3 - Resin Clocks -->
+                <div class="carousel-card">
+                    <div class="card-image">
+                        <img src="images/epoxywatch.png" alt="Resin Art Clock" loading="lazy">
+                        <div class="card-overlay">
+                            <div class="card-content">
+                                <span class="card-badge">Trending</span>
+                                <span class="card-category">Resin Clocks</span>
+                                <h3 class="card-title">Functional <span class="highlight-white">Art</span></h3>
+                                <p class="card-description">Transform time into art with our stunning resin clocks and patterns.</p>
+                                <div class="card-price">Starting from ₹799</div>
+                                <div class="card-buttons">
+                                    <a href="#clocks" class="btn btn-primary">VIEW CLOCKS</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Slide 4 - Resin Coasters & Decor -->
-                <div class="carousel-slide">
-                    <div class="slide-content">
-                        <div class="slide-text">
-                            <span class="slide-category">Home Decor Collection</span>
-                            <h1 class="slide-title">Elegant <span class="highlight">Coasters</span></h1>
-                            <p class="slide-description">Add a touch of elegance to your home with our premium resin coasters, serving trays, and decorative items. Perfect for gifting or elevating your space.</p>
-                            <div class="slide-features">
-                                <span class="feature-tag">Heat Resistant</span>
-                                <span class="feature-tag">Gift Sets Available</span>
-                                <span class="feature-tag">Custom Colors</span>
-                            </div>
-                            <div class="slide-buttons">
-                                <a href="#services" class="btn btn-primary">Shop Home Decor</a>
-                                <a href="#contact" class="btn btn-secondary">Custom Order</a>
+                <!-- Card 4 - Resin Coasters & Decor -->
+                <div class="carousel-card">
+                    <div class="card-image">
+                        <img src="images/puja_thali.png" alt="Resin Coasters and Home Decor" loading="lazy">
+                        <div class="card-overlay">
+                            <div class="card-content">
+                                <span class="card-badge">New</span>
+                                <span class="card-category">Home Decor Collection</span>
+                                <h3 class="card-title">Elegant <span class="highlight-white">Coasters</span></h3>
+                                <p class="card-description">Add elegance to your home with premium resin coasters and decor.</p>
+                                <div class="card-price">Starting from ₹499</div>
+                                <div class="card-buttons">
+                                    <a href="#services" class="btn btn-primary">SHOP DECOR</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="slide-image">
-                            <div class="image-placeholder custom-theme">
-                                <img src="images/puja_thali.png" alt="Resin Coasters and Home Decor" loading="lazy">
-                                <div class="floating-elements">
-                                    <div class="sparkle sparkle-1"></div>
-                                    <div class="sparkle sparkle-2"></div>
-                                    <div class="sparkle sparkle-3"></div>
-                                    <div class="sparkle sparkle-4"></div>
+                    </div>
+                </div>
+               <!-- Card 6 - Gift Sets -->
+                <div class="carousel-card">
+                    <div class="card-image">
+                        <img src="images/varmala2.webp" alt="Resin Art Gift Set" loading="lazy">
+                        <div class="card-overlay">
+                            <div class="card-content">
+                                <span class="card-badge">Gift Ready</span>
+                                <span class="card-category">Gift Collections</span>
+                                <h3 class="card-title">Perfect <span class="highlight-white">Gifts</span></h3>
+                                <p class="card-description">Thoughtfully curated gift sets for birthdays and special occasions.</p>
+                                <div class="card-price">Starting from ₹899</div>
+                                <div class="card-buttons">
+                                    <a href="#gift-sets" class="btn btn-primary">VIEW GIFTS</a>
                                 </div>
                             </div>
                         </div>
@@ -168,35 +237,425 @@
 
             <!-- Carousel Indicators -->
             <div class="carousel-indicators">
-                <button class="indicator active" data-slide="0"></button>
-                <button class="indicator" data-slide="1"></button>
-                <button class="indicator" data-slide="2"></button>
-                <button class="indicator" data-slide="3"></button>
+                <span class="current-slide">1</span>
+                <span class="separator">/</span>
+                <span class="total-slides">6</span>
             </div>
-
-            <!-- Product Info Cards -->
-            <!-- <div class="product-info-cards">
-                <div class="info-card">
-                    <i class="fas fa-shipping-fast"></i>
-                    <h4>Free Shipping</h4>
-                    <p>On orders over ₹200</p>
-                </div>
-                <div class="info-card">
-                    <i class="fas fa-certificate"></i>
-                    <h4>Guaranteed Quality</h4>
-                    <p>Premium materials only</p>
-                </div>
-                <div class="info-card">
-                    <i class="fas fa-paint-brush"></i>
-                    <h4>Custom Designs</h4>
-                    <p>Tailored to your vision</p>
-                </div>
-            </div> -->
         </div>
-        
-        <div class="hero-scroll">
-            <span>Scroll to explore</span>
-            <i class="fas fa-chevron-down"></i>
+    </section>
+
+    <!-- About Section -->
+    <!-- <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Our Art</h2>
+                <p>Where creativity meets craftsmanship</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Passion Meets Precision</h3>
+                    <p>Every piece of resin art we create is born from a deep passion for fluid dynamics and color theory. Using premium epoxy resins and carefully selected pigments, we craft one-of-a-kind artworks that capture movement, emotion, and natural beauty.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-gem"></i>
+                            <div>
+                                <h4>Premium Materials</h4>
+                                <p>Only the finest epoxy resins and archival pigments</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-hand-sparkles"></i>
+                            <div>
+                                <h4>Handcrafted Excellence</h4>
+                                <p>Each piece is meticulously created by skilled artisans</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-infinity"></i>
+                            <div>
+                                <h4>Timeless Beauty</h4>
+                                <p>Durable artworks that maintain their beauty for decades</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <img src="images/material.jpg" alt="Artist creating resin art" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Keychains Section -->
+    <section id="keychains" class="category-section keychains-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="category-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <h2>Custom Keychains</h2>
+                <p>Preserve your precious memories in beautiful custom keychains</p>
+            </div>
+            <div class="category-grid">
+                <div class="category-item">
+                    <div class="image-placeholder">
+                        <img src="https://www.lunacreations.co.uk/wp-content/uploads/2024/03/IMG_7237-scaled.jpg" alt="Custom Photo Keychain" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/keychain1/800/600'">
+                    </div>
+                    <div class="product-info">
+                        <h4>Photo Keychains</h4>
+                        <p>Custom Collection</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.9)</span>
+                        </div>
+                        <div class="price">₹299</div>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="image-placeholder">
+                        <img src="https://i.pinimg.com/736x/59/fe/cf/59fecfdbab3d93e1c201ab40c779018c.jpg" alt="Flower Preserved Keychain" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/keychain2/800/600'">
+                    </div>
+                    <div class="product-info">
+                        <h4>Flower Keychains</h4>
+                        <p>Nature Preserved</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.8)</span>
+                        </div>
+                        <div class="price">₹399</div>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="image-placeholder">
+                        <img src="images/keychain.jpg" alt="Assorted Resin Pieces" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/jewelry1/800/600'">
+                    </div>
+                    <div class="product-info">
+                        <h4>Memorial Keychains</h4>
+                        <p>Special Memories</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(5.0)</span>
+                        </div>
+                        <div class="price">₹499</div>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="image-placeholder">
+                        <img src="https://i.pinimg.com/736x/8a/2e/15/8a2e15c7b9e8c5f1a0d3e4f6b9c8d7e2.jpg" alt="Couple Name Keychain" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/keychain4/800/600'">
+                    </div>
+                    <div class="product-info">
+                        <h4>Name Keychains</h4>
+                        <p>Personalized Gift</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.7)</span>
+                        </div>
+                        <div class="price">₹349</div>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="category-cta">
+                <a href="#contact" class="btn btn-primary">View All Keychains</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Varmala Preservation Section -->
+    <section id="varmala" class="category-section varmala-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="category-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h2>Varmala Preservation</h2>
+                <p>Keep your wedding memories alive forever with our expert preservation techniques</p>
+            </div>
+            <div class="category-grid">
+                <div class="category-item featured">
+                    <div class="image-placeholder">
+                        <img src="images/varmala1.jpg" alt="Preserved Wedding Varmala" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/varmala1/800/600'">
+                    </div>
+                    <div class="product-info">
+                        <h4>Traditional Varmala</h4>
+                        <p>Wedding Memories</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(5.0)</span>
+                        </div>
+                        <div class="price">₹1,299</div>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="image-placeholder">
+                        <img src="images/varmala2.webp" alt="Preserved Varmala Frame" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/varmala2/800/600'">
+                    </div>
+                    <div class="product-info">
+                        <h4>Framed Preservation</h4>
+                        <p>Frame & Display</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.9)</span>
+                        </div>
+                        <div class="price">₹1,599</div>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="image-placeholder">
+                        <img src="images/varmala2.webp" alt="Preserved Varmala Shadow Box" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/varmala3/800/600'">
+                    </div>
+                    <div class="product-info">
+                        <h4>Shadow Box Style</h4>
+                        <p>3D Display</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.8)</span>
+                        </div>
+                        <div class="price">₹1,899</div>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="category-features">
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>UV Protection</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-infinity"></i>
+                    <span>Lifetime Preservation</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-palette"></i>
+                    <span>Custom Designs</span>
+                </div>
+            </div>
+            <div class="category-cta">
+                <a href="#contact" class="btn btn-primary">View All Varmala Options</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clocks Section -->
+    <section id="clocks" class="category-section clocks-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="category-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h2>Resin Clocks</h2>
+                <p>Functional art that tells time in style</p>
+            </div>
+            <div class="category-grid">
+                <div class="category-item">
+                    <div class="image-placeholder">
+                        <img src="https://saashi.co.in/wp-content/uploads/2024/05/Handcrafted-Ocean-Epoxy-Resin-Wall-Clock-%E2%80%93-Coastal-Elegance-for-Your-Home-3.jpg" alt="Resin Wall Clock" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/clock1/800/600'">
+                    </div>
+                    <div class="product-info">
+                        <h4>Ocean Wave Clock</h4>
+                        <p>Wall Mount</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.7)</span>
+                        </div>
+                        <div class="price">₹799</div>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="image-placeholder">
+                        <img src="https://phooldaan.com/wp-content/uploads/2023/12/IMG-20231223-WA0471.jpg" alt="Resin Wall Clock" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/clock2/800/600'">
+                    </div>
+                    <div class="product-info">
+                        <h4>Marble Effect Clock</h4>
+                        <p>Elegant Design</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.9)</span>
+                        </div>
+                        <div class="price">₹899</div>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="image-placeholder">
+                        <img src="https://customcraft.in/cdn/shop/products/CreamLightWithShells_4.jpg?v=1677502513" alt="Blue Resin Table Clock" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/clock3/800/600'">
+                    </div>
+                    <div class="product-info">
+                        <h4>Seashell Table Clock</h4>
+                        <p>Desktop Art</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.8)</span>
+                        </div>
+                        <div class="price">₹699</div>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="image-placeholder">
+                        <img src="https://i.pinimg.com/736x/c4/d8/2a/c4d82a9f7e5b8c1d3f6g9h2i5j8k1l4m.jpg" alt="Galaxy Resin Clock" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/clock4/800/600'">
+                    </div>
+                    <div class="product-info">
+                        <h4>Galaxy Night Clock</h4>
+                        <p>Cosmic Design</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.6)</span>
+                        </div>
+                        <div class="price">₹999</div>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="category-cta">
+                <a href="#contact" class="btn btn-primary">View All Clocks</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Home Decor Section -->
+    <section id="home-decor" class="category-section home-decor-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="category-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h2>Home Decor</h2>
+                <p>Beautiful resin pieces to enhance your living space</p>
+            </div>
+            <div class="category-grid">
+                <div class="category-item">
+                    <div class="image-placeholder">
+                        <img src="https://cdn.shopify.com/s/files/1/0576/5106/9108/files/unnamed_1_480x480.png?v=1734356290e" alt="Resin Coaster Set" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/coaster1/800/600'">
+                    </div>
+                    <div class="product-info">
+                        <h4>Coaster Sets</h4>
+                        <p>Functional Beauty</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.6)</span>
+                        </div>
+                        <div class="price">₹499</div>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="image-placeholder">
+                        <img src="https://i.etsystatic.com/25272380/r/il/588a8a/6058604640/il_fullxfull.6058604640_9h1k.jpg" alt="Resin Tray Home Decor" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/tray1/800/600'">
+                    </div>
+                    <div class="product-info">
+                        <h4>Decorative Trays</h4>
+                        <p>Elegant Accents</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.8)</span>
+                        </div>
+                        <div class="price">₹699</div>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="image-placeholder">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdjqLSNnnyBQmzTHwI02jlhvBa9X8yVV4YcA&s" alt="Resin Serving Tray" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/tray2/800/600'">
+                    </div>
+                    <div class="product-info">
+                        <h4>Serving Trays</h4>
+                        <p>Gift Ready</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.9)</span>
+                        </div>
+                        <div class="price">₹799</div>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="image-placeholder">
+                        <img src="https://i.pinimg.com/736x/f5/a1/3e/f5a13e7d9c2b8f4e6a5d8c1b9e2f7g4h.jpg" alt="Resin Candle Holders" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/candle1/800/600'">
+                    </div>
+                    <div class="product-info">
+                        <h4>Candle Holders</h4>
+                        <p>Ambient Lighting</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-text">(4.7)</span>
+                        </div>
+                        <div class="price">₹599</div>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="category-cta">
+                <a href="#contact" class="btn btn-primary">View All Home Decor</a>
+            </div>
         </div>
     </section>
 
@@ -243,144 +702,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Gallery</h2>
-                <p>Explore our stunning collection of resin art pieces</p>
-            </div>
-            <div class="gallery-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="keychains">Keychains</button>
-                <button class="filter-btn" data-filter="varmala">Varmala</button>
-                <button class="filter-btn" data-filter="clocks">Clocks</button>
-                <button class="filter-btn" data-filter="home-decor">Home Decor</button>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item" data-category="keychains">
-                    <div class="image-placeholder">
-                        <img src="https://www.lunacreations.co.uk/wp-content/uploads/2024/03/IMG_7237-scaled.jpg" alt="Custom Photo Keychain" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/keychain1/800/600'">
-                        <div class="overlay">
-                            <h4>Photo Keychains</h4>
-                            <p>Custom Collection</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="varmala">
-                    <div class="image-placeholder">
-                        <img src="images/varmala1.jpg" alt="Preserved Wedding Varmala" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/varmala1/800/600'">
-                        <div class="overlay">
-                            <h4>Varmala Preservation</h4>
-                            <p>Wedding Memories</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="varmala">
-                    <div class="image-placeholder">
-                        <img src="images/varmala2.webp" alt="Preserved Varmala Frame" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/varmala2/800/600'">
-                        <div class="overlay">
-                            <h4>Preserved Varmala Frame</h4>
-                            <p>Frame & Display</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="gallery-item" data-category="varmala">
-                    <div class="image-placeholder">
-                        <img src="images/varmala2.webp" alt="Preserved Varmala Frame" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/varmala2/800/600'">
-                        <div class="overlay">
-                            <h4>Preserved Varmala Frame</h4>
-                            <p>Frame & Display</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="clocks">
-                    <div class="image-placeholder">
-                        <img src="https://saashi.co.in/wp-content/uploads/2024/05/Handcrafted-Ocean-Epoxy-Resin-Wall-Clock-%E2%80%93-Coastal-Elegance-for-Your-Home-3.jpg" alt="Resin Wall Clock" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/clock1/800/600'">
-                        <div class="overlay">
-                            <h4>Wall Clocks</h4>
-                            <p>Functional Art</p>
-                        </div>
-                    </div>
-                </div>
-
-                 <div class="gallery-item" data-category="clocks">
-                    <div class="image-placeholder">
-                        <img src="https://phooldaan.com/wp-content/uploads/2023/12/IMG-20231223-WA0471.jpg" alt="Resin Wall Clock" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/clock1/800/600'">
-                        <div class="overlay">
-                            <h4>Wall Clocks</h4>
-                            <p>Functional Art</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="home-decor">
-                    <div class="image-placeholder">
-                        <img src="https://cdn.shopify.com/s/files/1/0576/5106/9108/files/unnamed_1_480x480.png?v=1734356290e" alt="Resin Coaster Set" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/coaster1/800/600'">
-                        <div class="overlay">
-                            <h4>Coaster Sets</h4>
-                            <p>Home Decor</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="keychains">
-                    <div class="image-placeholder">
-                        <img src="https://i.pinimg.com/736x/59/fe/cf/59fecfdbab3d93e1c201ab40c779018c.jpg" alt="Flower Preserved Keychain" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/keychain2/800/600'">
-                        <div class="overlay">
-                            <h4>Flower Keychains</h4>
-                            <p>Nature Preserved</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="clocks">
-                    <div class="image-placeholder">
-                        <img src="https://customcraft.in/cdn/shop/products/CreamLightWithShells_4.jpg?v=1677502513" alt="Blue Resin Table Clock" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/clock2/800/600'">
-                        <div class="overlay">
-                            <h4>Table Clocks</h4>
-                            <p>Desktop Art</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="home-decor">
-                    <div class="image-placeholder">
-                        <img src="https://i.etsystatic.com/25272380/r/il/588a8a/6058604640/il_fullxfull.6058604640_9h1k.jpg" alt="Resin Tray Home Decor" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/tray1/800/600'">
-                        <div class="overlay">
-                            <h4>Home Decor</h4>
-                            <p>Resin Trays & Accents</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="home-decor">
-                    <div class="image-placeholder">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdjqLSNnnyBQmzTHwI02jlhvBa9X8yVV4YcA&s" alt="Resin Serving Tray" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/tray2/800/600'">
-                        <div class="overlay">
-                            <h4>Serving Trays</h4>
-                            <p>Gift Ready</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="keychains">
-                    <div class="image-placeholder">
-                        <img src="https://m.media-amazon.com/images/I/71gDDVhwhcL.jpg" alt="Assorted Resin Pieces" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/jewelry1/800/600'">
-                        <div class="overlay">
-                            <h4>Assorted Pieces</h4>
-                            <p>Jewelry & Small Decor</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
@@ -571,7 +892,7 @@
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#keychains">Categories</a></li>
                         <li><a href="#services">Services</a></li>
                     </ul>
                 </div>
