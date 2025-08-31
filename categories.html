@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Categories - Memory & More</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/main_logo.png" alt="Memory & More Logo">
+                <h2>Memories & More</h2>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder=" ">
+                    <label class="search-floating-label">Search products...</label>
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="categories.html" class="nav-link active">Categories</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <!-- Action Icons -->
+            <div class="nav-icons">
+                <a href="#wishlist" class="nav-icon" title="Wishlist">
+                    <i class="fas fa-heart"></i>
+                    <span class="icon-badge">3</span>
+                </a>
+                <a href="#cart" class="nav-icon" title="Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="icon-badge">2</span>
+                </a>
+                <a href="#account" class="nav-icon" title="Account">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+            
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Categories Hero Section -->
+    <section class="categories-hero">
+        <div class="container">
+            <div class="categories-hero-content">
+                <h1>Explore Our <span class="highlight">Categories</span></h1>
+                <p>Discover our complete collection of handcrafted resin art pieces, perfect for every occasion and space.</p>
+                
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>All Categories</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-bar">
+                <div class="filter-left">
+                    <h3>All Products <span class="product-count">(48 items)</span></h3>
+                </div>
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="sort-select">Sort by:</label>
+                        <select id="sort-select" class="filter-select">
+                            <option value="featured">Featured</option>
+                            <option value="newest">Newest First</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Highest Rated</option>
+                        </select>
+                    </div>
+                    <div class="view-toggle">
+                        <button class="view-btn grid-view active" data-view="grid">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn list-view" data-view="list">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Grid -->
+    <section class="categories-main">
+        <div class="container">
+            <div class="categories-layout">
+                <!-- Sidebar Filters -->
+                <aside class="filter-sidebar">
+                    <div class="filter-widget">
+                        <h4>Categories</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" checked>
+                                <span class="checkmark"></span>
+                                All Categories <span class="count">(48)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Keychains <span class="count">(12)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Varmala Preservation <span class="count">(8)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Wall Clocks <span class="count">(10)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Home Decor <span class="count">(9)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Workshops <span class="count">(4)</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Gift Sets <span class="count">(5)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-widget">
+                        <h4>Price Range</h4>
+                        <div class="price-range">
+                            <div class="price-inputs">
+                                <input type="number" placeholder="Min" class="price-input" value="0">
+                                <span>to</span>
+                                <input type="number" placeholder="Max" class="price-input" value="5000">
+                            </div>
+                            <div class="price-slider">
+                                <div class="slider-track"></div>
+                                <div class="slider-range"></div>
+                                <div class="slider-thumb min-thumb"></div>
+                                <div class="slider-thumb max-thumb"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-widget">
+                        <h4>Rating</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    <span>5 Stars</span>
+                                </div>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                    <span>4+ Stars</span>
+                                </div>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                    <span>3+ Stars</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button class="clear-filters">Clear All Filters</button>
+                    </div>
+                </aside>
+
+                <!-- Products Grid -->
+                <main class="products-grid">
+                    <!-- Product Item 1 -->
+                    <div class="product-card" data-category="keychains">
+                        <div class="product-image">
+                            <img src="images/keychain.jpg" alt="Custom Resin Keychain" loading="lazy">
+                            <div class="product-badges">
+                                <span class="badge popular">Popular</span>
+                                <span class="badge new">New</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="action-btn wishlist-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn quick-view-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn compare-btn" title="Compare">
+                                    <i class="fas fa-balance-scale"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Keychains</div>
+                            <h3 class="product-title">Custom Photo Resin Keychain</h3>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-count">(24 reviews)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="price">₹299</span>
+                                <span class="original-price">₹399</span>
+                                <span class="discount">25% off</span>
+                            </div>
+                            <button class="add-to-cart-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 2 -->
+                    <div class="product-card" data-category="varmala">
+                        <div class="product-image">
+                            <img src="images/varmala1.jpg" alt="Wedding Varmala Preservation" loading="lazy">
+                            <div class="product-badges">
+                                <span class="badge premium">Premium</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="action-btn wishlist-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn quick-view-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn compare-btn" title="Compare">
+                                    <i class="fas fa-balance-scale"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Varmala Preservation</div>
+                            <h3 class="product-title">Wedding Varmala Frame</h3>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-count">(18 reviews)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="price">₹1,299</span>
+                            </div>
+                            <button class="add-to-cart-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 3 -->
+                    <div class="product-card" data-category="clocks">
+                        <div class="product-image">
+                            <img src="images/epoxywatch.png" alt="Resin Art Clock" loading="lazy">
+                            <div class="product-badges">
+                                <span class="badge trending">Trending</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="action-btn wishlist-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn quick-view-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn compare-btn" title="Compare">
+                                    <i class="fas fa-balance-scale"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Wall Clocks</div>
+                            <h3 class="product-title">Handcrafted Resin Clock</h3>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="rating-count">(31 reviews)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="price">₹799</span>
+                                <span class="original-price">₹999</span>
+                                <span class="discount">20% off</span>
+                            </div>
+                            <button class="add-to-cart-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 4 -->
+                    <div class="product-card" data-category="home-decor">
+                        <div class="product-image">
+                            <img src="images/puja_thali.png" alt="Resin Coasters Set" loading="lazy">
+                            <div class="product-badges">
+                                <span class="badge sale">Sale</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="action-btn wishlist-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn quick-view-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn compare-btn" title="Compare">
+                                    <i class="fas fa-balance-scale"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Home Decor</div>
+                            <h3 class="product-title">Premium Coaster Set</h3>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-count">(45 reviews)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="price">₹499</span>
+                                <span class="original-price">₹699</span>
+                                <span class="discount">30% off</span>
+                            </div>
+                            <button class="add-to-cart-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 5 -->
+                    <div class="product-card" data-category="gift-sets">
+                        <div class="product-image">
+                            <img src="images/varmala2.webp" alt="Gift Set Collection" loading="lazy">
+                            <div class="product-badges">
+                                <span class="badge gift">Gift Ready</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="action-btn wishlist-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn quick-view-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn compare-btn" title="Compare">
+                                    <i class="fas fa-balance-scale"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Gift Sets</div>
+                            <h3 class="product-title">Anniversary Gift Collection</h3>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-count">(12 reviews)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="price">₹899</span>
+                                <span class="original-price">₹1,199</span>
+                                <span class="discount">25% off</span>
+                            </div>
+                            <button class="add-to-cart-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 6 -->
+                    <div class="product-card" data-category="keychains">
+                        <div class="product-image">
+                            <img src="images/keychain.jpg" alt="Flower Resin Keychain" loading="lazy">
+                            <div class="product-badges">
+                                <span class="badge eco">Eco-Friendly</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="action-btn wishlist-btn" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button class="action-btn quick-view-btn" title="Quick View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn compare-btn" title="Compare">
+                                    <i class="fas fa-balance-scale"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Keychains</div>
+                            <h3 class="product-title">Real Flower Keychain</h3>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="rating-count">(36 reviews)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="price">₹399</span>
+                            </div>
+                            <button class="add-to-cart-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Load More Section -->
+            <div class="load-more-section">
+                <button class="load-more-btn">
+                    <i class="fas fa-plus"></i>
+                    Load More Products
+                </button>
+                <p class="showing-text">Showing 6 of 48 products</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Memory & More</h3>
+                    <p>Creating stunning resin art that transforms spaces and inspires souls.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Memory & More. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="categories.js"></script>
+</body>
+</html>
