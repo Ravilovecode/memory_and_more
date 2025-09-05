@@ -1672,22 +1672,32 @@ p {
 }
 
 .price {
-    font-size: 2rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: #000;
     letter-spacing: -0.5px;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .price::before {
-    content: '';
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background: #4ade80;
-    border-radius: 50%;
-    margin-right: 8px;
-    vertical-align: middle;
+    display: none;
+}
+
+/* Price styling for original and discounted prices */
+.price .original-price {
+    font-size: 0.9rem;
+    color: #999;
+    text-decoration: line-through;
+    font-weight: 500;
+}
+
+.price .discounted-price {
+    font-size: 1.3rem;
+    color: #e74c3c;
+    font-weight: 800;
 }
 
 .rating {
@@ -1878,26 +1888,42 @@ p {
 
 .card-ref .price { 
     position: static;
-    width: 70px; 
-    height: 70px; 
+    width: auto; 
+    height: auto; 
     display: flex; 
-    align-items: center; 
+    flex-direction: column;
+    align-items: flex-start; 
     justify-content: center; 
-    text-align: center; 
-    background: #fff; 
-    color: #133a59; 
+    text-align: left; 
+    background: transparent; 
+    color: black; 
     font-weight: 800; 
-    font-size: 0.9rem; 
-    line-height: 1.1; 
-    border-radius: 50%; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-    padding: 6px; 
+    font-size: 1.2rem; 
+    line-height: 1.2; 
+    border-radius: 0; 
+    box-shadow: none; 
+    padding: 0; 
     margin: 0;
     flex-shrink: 0;
     z-index: 2;
     position: relative;
+    gap: 2px;
 }
 .card-ref .price::before { display: none; }
+
+/* Price styling for original and discounted prices */
+.card-ref .price .original-price {
+    font-size: 0.9rem;
+    color: #999;
+    text-decoration: line-through;
+    font-weight: 500;
+}
+
+.card-ref .price .discounted-price {
+    font-size: 1.3rem;
+    color: #e74c3c;
+    font-weight: 800;
+}
 
 /* Row 2: Product Image */
 .card-ref .image-placeholder { 
