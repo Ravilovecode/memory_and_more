@@ -13,6 +13,75 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
     navMenu.classList.remove('active');
 }));
 
+// Product Card Interactions
+class ProductCardManager {
+    constructor() {
+        this.init();
+    }
+    
+    init() {
+        this.initWishlistButtons();
+        this.initBuyNowButtons();
+    }
+    
+    initWishlistButtons() {
+        const wishlistBtns = document.querySelectorAll('.wishlist-btn');
+        wishlistBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const heart = btn.querySelector('i');
+                const isLiked = heart.classList.contains('fas');
+                
+                if (isLiked) {
+                    heart.classList.remove('fas');
+                    heart.classList.add('far');
+                    btn.style.background = 'rgba(255, 255, 255, 0.9)';
+                    btn.style.color = '#666';
+                } else {
+                    heart.classList.remove('far');
+                    heart.classList.add('fas');
+                    btn.style.background = '#ff6b6b';
+                    btn.style.color = 'white';
+                    
+                    // Add a nice animation
+                    btn.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        btn.style.transform = 'scale(1.1)';
+                    }, 150);
+                }
+            });
+        });
+    }
+    
+    initBuyNowButtons() {
+        const buyNowBtns = document.querySelectorAll('.buy-now-btn');
+        buyNowBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Get product info
+                const productCard = btn.closest('.category-item');
+                const productName = productCard.querySelector('h4').textContent;
+                const productPrice = productCard.querySelector('.price').textContent;
+                
+                // Add to cart animation
+                btn.innerHTML = '<i class="fas fa-check"></i> Added!';
+                btn.style.background = '#4ade80';
+                
+                setTimeout(() => {
+                    btn.innerHTML = 'Add to Cart';
+                    btn.style.background = '';
+                }, 2000);
+                
+                // You can add actual cart functionality here
+                console.log(`Added to cart: ${productName} - ${productPrice}`);
+            });
+        });
+    }
+}
+
 // Search Functionality
 class SearchManager {
     constructor() {
@@ -863,6 +932,7 @@ function initCategoryNavigation() {
 // Initialize all components when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new SearchManager();
+    new ProductCardManager();
 });
 
-console.log('🎨 ArtFlow Resin website loaded successfully!');
+console.log('🎨 Memory & More website loaded successfully!');
