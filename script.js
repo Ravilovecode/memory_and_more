@@ -406,7 +406,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Add intersection observer for better performance
+    // Add intersection observer for better performance - DISABLED to prevent unwanted carousel animations
+    /*
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -429,6 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroSection) {
         carouselObserver.observe(heroSection);
     }
+    */
 });
 
 // Smooth scrolling for navigation links
@@ -445,9 +447,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Category Section Animations
+// Category Section Animations - COMPLETELY DISABLED
+/*
 function animateOnScroll() {
-    const categoryItems = document.querySelectorAll('.category-item, .workshop-item, .gift-set-item');
+    // Only animate category items, not carousel/hero section
+    const categoryItems = document.querySelectorAll('.category-item:not(.hero .category-item), .workshop-item, .gift-set-item');
     
     categoryItems.forEach(item => {
         const itemTop = item.getBoundingClientRect().top;
@@ -459,10 +463,13 @@ function animateOnScroll() {
         }
     });
 }
+*/
 
-// Initialize category items for animation
+// Initialize category items for animation - COMPLETELY DISABLED
+/*
 document.addEventListener('DOMContentLoaded', () => {
-    const categoryItems = document.querySelectorAll('.category-item, .workshop-item, .gift-set-item');
+    // Only apply animations to category items, not carousel/hero section
+    const categoryItems = document.querySelectorAll('.category-item:not(.hero .category-item), .workshop-item, .gift-set-item');
     
     categoryItems.forEach(item => {
         item.style.opacity = '0';
@@ -473,11 +480,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Trigger initial animation check
     animateOnScroll();
 });
+*/
 
-// Add scroll listener for animations
-window.addEventListener('scroll', animateOnScroll);
+// Add scroll listener for animations - DISABLED
+// window.addEventListener('scroll', animateOnScroll);
 
-// Enhanced category item interactions
+// Enhanced category item interactions - DISABLED TO PREVENT UNWANTED TRANSFORMS
+/*
 document.querySelectorAll('.category-item').forEach(item => {
     item.addEventListener('mouseenter', function() {
         this.style.transform = 'translateY(-15px) scale(1.02)';
@@ -487,8 +496,10 @@ document.querySelectorAll('.category-item').forEach(item => {
         this.style.transform = 'translateY(0) scale(1)';
     });
 });
+*/
 
-// Add loading animation for category images
+// Add loading animation for category images - DISABLED
+/*
 document.querySelectorAll('.category-item').forEach(item => {
     const img = item.querySelector('img');
     if (img) {
@@ -503,6 +514,7 @@ document.querySelectorAll('.category-item').forEach(item => {
         img.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     }
 });
+*/
 
 // Contact Form Handling
 const contactForm = document.querySelector('.contact-form');
@@ -675,7 +687,8 @@ document.querySelectorAll('.category-item').forEach(item => {
     });
 });
 
-// Add parallax effect for hero section
+// Add parallax effect for hero section - DISABLED TO PREVENT UNWANTED MOVEMENT
+/*
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
@@ -684,6 +697,7 @@ window.addEventListener('scroll', () => {
         hero.style.transform = `translateY(${rate}px)`;
     }
 });
+*/
 
 // Testimonials carousel (if you want to add auto-rotation)
 let currentTestimonial = 0;

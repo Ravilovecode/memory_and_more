@@ -26,7 +26,7 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: auto;
     margin: 0 auto;
     padding: 0 20px;
     width: 100%;
@@ -115,8 +115,9 @@ p {
 }
 
 .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.98);
+    background: linear-gradient(135deg, #e0c763 0%, #813807 100%);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    /* border-radius: 4px solid rgb(0, 0, 0); */
 }
 
 .nav-container {
@@ -186,20 +187,20 @@ p {
     position: relative;
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid rgba(102, 126, 234, 0.08);
+    background: white;
+    border: none;
     border-radius: 50px;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    height: 50px;
 }
 
 .search-box:focus-within {
     background: white;
-    border-color: rgba(102, 126, 234, 0.2);
-    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.15);
-    transform: translateY(-2px);
+    border-color: transparent;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
 }
 
 .search-icon {
@@ -213,7 +214,7 @@ p {
 
 .search-box:focus-within .search-icon {
     color: #667eea;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .search-input {
@@ -221,7 +222,7 @@ p {
     border: none;
     outline: none;
     background: transparent;
-    padding: 16px 20px 16px 55px;
+    padding: 14px 20px 14px 55px;
     font-size: 0.95rem;
     color: #374151;
     font-family: 'Inter', sans-serif;
@@ -240,18 +241,20 @@ p {
 }
 
 .search-btn {
-    position: relative;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: absolute;
+    right: 5px;
+    background: linear-gradient(135deg, #e0c763 0%, #d4af37 100%);
     border: none;
-    padding: 16px 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     color: white;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 60px;
-    position: relative;
+    font-size: 1rem;
     overflow: hidden;
 }
 
@@ -262,7 +265,7 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, #000000 0%, #000000 100%);
+    background: linear-gradient(135deg, #f5d76e 0%, #b8860b 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -273,7 +276,7 @@ p {
 
 .search-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 4px 15px rgba(224, 199, 99, 0.4);
 }
 
 .search-btn:active {
@@ -547,15 +550,16 @@ p {
     text-decoration: none;
     color: black;
     font-weight: 600;
-    transition: color 0.25s cubic-bezier(.4,0,.2,1), transform 0.15s ease;
+    transition: color 0.25s cubic-bezier(.4,0,.2,1);
     position: relative;
-    padding: 6px 12px;
+    padding: 8px 12px;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
 }
 
 .nav-link:hover {
     color: white;
-    transform: translateY(-2px);
     background: rgba(99,102,241,0.06);
     box-shadow: 0 6px 18px rgba(59,130,246,0.06);
 }
@@ -570,16 +574,16 @@ p {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: -8px;
+    bottom: -6px;
     width: 0;
     height: 3px;
-    background: linear-gradient(90deg,#667eea,#764ba2);
+    background: linear-gradient(135deg, #d10622 0%, #4D0710 100%);
     border-radius: 3px;
     transition: width 0.25s ease;
 }
 
 .nav-link:hover::after, .nav-link.active::after {
-    width: 40%;
+    width: 60%;
 }
 
 /* mobile hamburger contrast */
@@ -619,13 +623,36 @@ p {
 /* Category Navigation Styles */
 .category-navigation {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 0.5rem;
     max-width: 1200px;
     margin: 0 auto;
     padding: 1rem 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #667eea #f1f1f1;
+}
+
+/* Custom scrollbar for webkit browsers */
+.category-navigation::-webkit-scrollbar {
+    height: 6px;
+}
+
+.category-navigation::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.category-navigation::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 3px;
+}
+
+.category-navigation::-webkit-scrollbar-thumb:hover {
+    background: #5a67d8;
 }
 
 .category-item {
@@ -637,6 +664,8 @@ p {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .category-item:hover {
@@ -750,7 +779,7 @@ p {
     transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
-    height: 350px;
+    height: 300px;
 }
 
 .carousel-card:hover {
@@ -768,7 +797,7 @@ p {
 .card-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
     object-position: center;
     transition: transform 0.3s ease;
 }
@@ -955,11 +984,104 @@ p {
     color: #999;
 }
 
+/* Small Cards Section */
+.small-cards-section {
+    padding: 40px 0;
+    background: #f8f9fa;
+    width: 100%;
+}
+
+.small-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin: 0 auto;
+    /* padding: 0 20px; */
+}
+
+.small-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.small-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.small-card-image {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.small-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.small-card:hover .small-card-image img {
+    transform: scale(1.05);
+}
+
+.small-card-content {
+    padding: 12px 16px;
+    text-align: center;
+    background: white;
+}
+
+.small-card-content h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #374151;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Responsive Design for Small Cards */
+@media (max-width: 768px) {
+    .small-cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        padding: 0 15px;
+    }
+    
+    .small-card-content h4 {
+        font-size: 0.8rem;
+    }
+    
+    .small-card-content {
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .small-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .small-cards-section {
+        padding: 30px 0;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
     .carousel-card {
         flex: 0 0 calc(40% - 1rem); /* Ensures 2.5 cards visible */
-        height: 260px;
+        height: 210px;
     }
     
     .card-title {
@@ -975,7 +1097,7 @@ p {
 @media (max-width: 1024px) {
     .carousel-card {
         flex: 0 0 calc(40% - 1.5rem); /* Maintains 2.5 cards */
-        height: 240px;
+        height: 190px;
     }
     
     .carousel-container {
@@ -1032,7 +1154,7 @@ p {
     
     .carousel-card {
         flex: 0 0 calc(40% - 1rem); /* Ensures 2.5 cards visible on mobile */
-        height: 220px;
+        height: 170px;
     }
     
     .card-overlay {
@@ -1121,7 +1243,7 @@ p {
     
     .carousel-card {
         flex: 0 0 calc(40% - 0.5rem); /* Adjusted for better fit with reduced gap */
-        height: 200px; /* Increased height for better visibility */
+        height: 150px; /* Increased height for better visibility */
     }
     
     .card-overlay {
@@ -1190,7 +1312,7 @@ p {
 @media (max-width: 360px) {
     .carousel-card {
         flex: 0 0 calc(38% - 0.5rem); /* Even smaller for very small screens */
-        height: 180px;
+        height: 130px;
     }
     
     .carousel-track {
@@ -1316,7 +1438,7 @@ p {
 
 .section-header p {
     font-size: 1.2rem;
-    color: #666;
+    color: black;
 }
 
 /* About Section */
@@ -1381,7 +1503,7 @@ p {
 
 .keychains-section {
     background: linear-gradient(135deg, #e0c763 0%, #813807 100%);
-    color: white;
+    color: black;
 }
 
 .varmala-section {
@@ -1396,7 +1518,7 @@ p {
 }
 
 .home-decor-section {
-    background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+    background: #FFF8E7;
     color: #2c3e50;
 }
 
