@@ -1831,21 +1831,45 @@ p {
 }
 
 .category-cta .btn {
-    padding: 15px 30px;
-    font-size: 1.1rem;
-    border-radius: 30px;
-    background: rgba(255, 255, 255, 0.2);
-    color: inherit;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 25px;
+    background: white;
+    color: #ff6b35;
+    border: 2px solid #ff6b35;
     text-decoration: none;
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: none;
+    position: relative;
+}
+
+.category-cta .btn::after {
+    content: '→';
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
 }
 
 .category-cta .btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background: #ff6b35;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.category-cta .btn:hover::after {
+    transform: translateX(3px);
+}
+
+.category-cta .btn:active {
+    transform: translateY(0);
+    transition: all 0.1s ease;
 }
 
 /* Reference-style variant for existing category-item - 3 row layout */
