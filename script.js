@@ -1,17 +1,39 @@
 // Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
+const mobileBackdrop = document.querySelector('.mobile-menu-backdrop');
+const mobileMenuClose = document.querySelector('.mobile-menu-close');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+function closeMenu() {
     hamburger.classList.remove('active');
     navMenu.classList.remove('active');
-}));
+    mobileBackdrop.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function openMenu() {
+    hamburger.classList.add('active');
+    navMenu.classList.add('active');
+    mobileBackdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+hamburger.addEventListener('click', () => {
+    if (navMenu.classList.contains('active')) {
+        closeMenu();
+    } else {
+        openMenu();
+    }
+});
+
+// Close mobile menu when clicking on backdrop
+mobileBackdrop.addEventListener('click', closeMenu);
+
+// Close mobile menu when clicking close button
+mobileMenuClose.addEventListener('click', closeMenu);
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', closeMenu));
 
 // Product Card Interactions
 class ProductCardManager {
