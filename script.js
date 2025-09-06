@@ -255,12 +255,22 @@ class HeroCarousel {
         this.updateTotalSlides();
         this.bindEvents();
         // Removed auto-slide functionality
+        
+        // Reset any existing transforms to allow native scrolling
+        if (this.track) {
+            this.track.style.transform = '';
+        }
+        
         this.updateCarousel();
         
         // Recalculate on window resize
         window.addEventListener('resize', () => {
             this.calculateCardWidth();
             this.cardsPerView = this.getCardsPerView();
+            // Reset transform on resize too
+            if (this.track) {
+                this.track.style.transform = '';
+            }
             this.updateCarousel();
         });
     }
@@ -369,6 +379,7 @@ class HeroCarousel {
     }
     
     updateCarousel() {
+        // Native scrolling is now handled by CSS - no need for JavaScript transforms
         // Calculate the maximum slide position with mobile-optimized logic
         let maxSlide;
         if (this.cardsPerView >= this.totalCards) {
@@ -384,15 +395,22 @@ class HeroCarousel {
         
         this.currentSlide = Math.min(this.currentSlide, maxSlide);
         
-        // Calculate the translate distance
-        let translateX = -this.currentSlide * (this.cardWidth + this.gap);
+        // Calculate the translate distance for scroll position instead of transform
+        let scrollX = this.currentSlide * (this.cardWidth + this.gap);
         
-        // Restrict translateX for mobile screens to prevent excessive scrolling
+        // Restrict scrollX for mobile screens to prevent excessive scrolling
         if (window.innerWidth <= 768) {
-            translateX = Math.max(translateX, -500); // Don't go beyond -600px on mobile
+            scrollX = Math.min(scrollX, 500); // Don't go beyond 500px on mobile
         }
-        
-        this.track.style.transform = `translateX(${translateX}px)`;
+
+        // Use smooth scrolling instead of transform
+        const container = this.track.parentElement;
+        if (container) {
+            container.scrollTo({
+                left: scrollX,
+                behavior: 'smooth'
+            });
+        }
         
         // Update slide indicator
         if (this.currentSlideElement) {

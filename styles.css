@@ -732,27 +732,18 @@ p {
     padding: 1rem 0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: #667eea #f1f1f1;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-/* Custom scrollbar for webkit browsers */
+/* Hide scrollbar for category navigation */
 .category-navigation::-webkit-scrollbar {
-    height: 6px;
+    display: none;
 }
 
-.category-navigation::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 3px;
-}
-
-.category-navigation::-webkit-scrollbar-thumb {
-    background: #667eea;
-    border-radius: 3px;
-}
-
-.category-navigation::-webkit-scrollbar-thumb:hover {
-    background: #5a67d8;
+.category-navigation {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
 .category-item {
@@ -857,17 +848,33 @@ p {
     margin: 0 auto;
     padding: 0 20px;
     position: relative;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     height: auto;
     width: 100%;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+    scroll-snap-type: x proximity;
+}
+
+/* Hide scrollbar for carousel container */
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-container {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
 .carousel-track {
     display: flex;
     gap: 2rem;
-    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
     padding: 0.5rem 0;
     width: max-content;
+    min-width: 100%;
 }
 
 .carousel-card {
@@ -880,6 +887,7 @@ p {
     cursor: pointer;
     position: relative;
     height: 300px;
+    scroll-snap-align: start;
 }
 
 .carousel-card:hover {
@@ -1020,17 +1028,19 @@ p {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Carousel Navigation */
+/* Carousel Navigation - Fixed positioning relative to hero section */
 .carousel-nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 100%;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 40px;
     pointer-events: none;
     z-index: 20;
+    margin-top: 60px; /* Adjust for hero header */
 }
 
 .carousel-btn {
@@ -1049,16 +1059,6 @@ p {
     pointer-events: all;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     z-index: 21;
-}
-
-.carousel-btn.prev-btn {
-    position: absolute;
-    left: 10px;
-}
-
-.carousel-btn.next-btn {
-    position: absolute;
-    right: 36px;
 }
 
 .carousel-btn:hover {
@@ -1237,6 +1237,15 @@ p {
     
     .carousel-container {
         padding: 0 15px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+    
+    /* Hide carousel navigation on tablets too for better native scrolling */
+    .carousel-nav {
+        display: none;
     }
 }
 
@@ -1253,6 +1262,10 @@ p {
         padding: 0 10px; /* Reduce carousel padding for mobile */
         max-width: 100%;
         width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
     }
     
     .carousel-track {
@@ -1351,6 +1364,10 @@ p {
         padding: 0 8px; /* Minimal carousel padding for small mobile */
         max-width: 100%;
         width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
     }
     
     .carousel-track {
