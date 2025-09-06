@@ -258,7 +258,20 @@ class HeroCarousel {
     }
     
     updateTotalSlides() {
-        const maxSlides = Math.max(1, this.totalCards - Math.floor(this.cardsPerView) + 1);
+        // Calculate how many slides we actually need - more restrictive for mobile
+        let maxSlides;
+        if (this.cardsPerView >= this.totalCards) {
+            // If we can see all cards at once, only need 1 slide
+            maxSlides = 1;
+        } else if (window.innerWidth <= 768) {
+            // Mobile/tablet: be more restrictive to prevent excessive scrolling
+            maxSlides = Math.max(1, this.totalCards - 2);
+        } else {
+            // Desktop: use the regular calculation
+            const visibleCards = Math.floor(this.cardsPerView);
+            maxSlides = Math.max(1, this.totalCards - Math.floor(this.cardsPerView) + 0.5);
+        }
+        
         if (this.totalSlidesElement) {
             this.totalSlidesElement.textContent = maxSlides;
         }
@@ -334,12 +347,29 @@ class HeroCarousel {
     }
     
     updateCarousel() {
-        // Calculate the maximum slide position
-        const maxSlide = Math.max(0, this.totalCards - Math.floor(this.cardsPerView));
+        // Calculate the maximum slide position with mobile-optimized logic
+        let maxSlide;
+        if (this.cardsPerView >= this.totalCards) {
+            maxSlide = 0; // Can see all cards, no sliding needed
+        } else if (window.innerWidth <= 768) {
+            // Mobile/tablet: be more restrictive to prevent excessive scrolling
+            maxSlide = Math.max(0, this.totalCards - 2);
+        } else {
+            // Desktop: use the regular calculation
+            const visibleCards = Math.floor(this.cardsPerView);
+            maxSlide = Math.max(0, this.totalCards - visibleCards);
+        }
+        
         this.currentSlide = Math.min(this.currentSlide, maxSlide);
         
         // Calculate the translate distance
-        const translateX = -this.currentSlide * (this.cardWidth + this.gap);
+        let translateX = -this.currentSlide * (this.cardWidth + this.gap);
+        
+        // Restrict translateX for mobile screens to prevent excessive scrolling
+        if (window.innerWidth <= 768) {
+            translateX = Math.max(translateX, -500); // Don't go beyond -600px on mobile
+        }
+        
         this.track.style.transform = `translateX(${translateX}px)`;
         
         // Update slide indicator
@@ -355,7 +385,18 @@ class HeroCarousel {
     }
     
     updateButtonStates() {
-        const maxSlide = Math.max(0, this.totalCards - Math.floor(this.cardsPerView));
+        // Use the same mobile-optimized calculation for max slide
+        let maxSlide;
+        if (this.cardsPerView >= this.totalCards) {
+            maxSlide = 0;
+        } else if (window.innerWidth <= 768) {
+            // Mobile/tablet: be more restrictive
+            maxSlide = Math.max(0, this.totalCards - 2);
+        } else {
+            // Desktop: use the regular calculation
+            const visibleCards = Math.floor(this.cardsPerView);
+            maxSlide = Math.max(0, this.totalCards - visibleCards);
+        }
         
         // Left arrow: hidden initially, shows after scrolling right
         if (this.currentSlide === 0) {
@@ -384,13 +425,23 @@ class HeroCarousel {
     }
     
     nextSlide() {
-        const maxSlide = Math.max(0, this.totalCards - Math.floor(this.cardsPerView));
+        // Use the same mobile-optimized calculation for max slide
+        let maxSlide;
+        if (this.cardsPerView >= this.totalCards) {
+            maxSlide = 0;
+        } else if (window.innerWidth <= 768) {
+            // Mobile/tablet: be more restrictive
+            maxSlide = Math.max(0, this.totalCards - 2);
+        } else {
+            // Desktop: use the regular calculation
+            const visibleCards = Math.floor(this.cardsPerView);
+            maxSlide = Math.max(0, this.totalCards - visibleCards);
+        }
         
         if (this.currentSlide < maxSlide) {
             this.currentSlide++;
-        } else {
-            this.currentSlide = 0; // Loop back to start
         }
+        // Removed the loop back to start to prevent extra slides
         
         this.updateCarousel();
         // Removed auto-slide reset since auto-slide is disabled
@@ -399,10 +450,8 @@ class HeroCarousel {
     prevSlide() {
         if (this.currentSlide > 0) {
             this.currentSlide--;
-        } else {
-            // Loop to end
-            this.currentSlide = Math.max(0, this.totalCards - Math.floor(this.cardsPerView));
         }
+        // Removed the loop to end to prevent positioning issues
         
         this.updateCarousel();
         // Removed auto-slide reset since auto-slide is disabled
