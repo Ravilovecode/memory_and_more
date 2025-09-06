@@ -974,7 +974,7 @@ p {
 
 /* Small Cards Section */
 .small-cards-section {
-    padding: 40px 0;
+    padding: 3% 0;
     background: #f8f9fa;
     width: 100%;
 }
@@ -1083,7 +1083,7 @@ p {
     }
     
     .small-cards-section {
-        padding: 30px 0;
+        padding: 3% 0;
     }
     
     .small-card-content h4 {
@@ -1156,7 +1156,12 @@ p {
     }
     
     .carousel-track {
-        gap: 2rem; /* Keep consistent gap for proper 2.5 card display */
+        gap: 1rem; /* Reduced gap for mobile screens */
+    }
+    
+    /* Hide carousel navigation arrows on mobile */
+    .carousel-nav {
+        display: none;
     }
     
     .hero {
@@ -1249,7 +1254,7 @@ p {
     }
     
     .carousel-track {
-        gap: 2rem; /* Keep consistent gap for proper 2.5 card display */
+        gap: 0.75rem; /* Even smaller gap for small mobile screens */
     }
     
     .category-navigation {
@@ -1278,7 +1283,7 @@ p {
     
     .carousel-card {
         flex: 0 0 calc(40% - 0.5rem); /* Adjusted for better fit with reduced gap */
-        height: 120px; /* Increased height for better visibility */
+        height: 100px; /* Increased height for better visibility */
     }
     
     .card-overlay {
@@ -3340,11 +3345,11 @@ p {
 
     /* Extra small mobile optimization */
     .hero {
-        padding: 145px 5px 20px; /* Adjusted for search bar */
+        padding: 180px 5px 2px; /* Adjusted for search bar */
     }
 
     .carousel-container {
-        height: 140px;
+        height: 120px;
         padding: 0 5px;
     }
 
