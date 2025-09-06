@@ -109,6 +109,14 @@ class ProductCardManager {
                 const productName = productNameElement ? productNameElement.textContent.trim() : 'Product';
                 const productDescription = productDescriptionElement ? productDescriptionElement.textContent.trim() : 'Premium resin art creation';
                 
+                // Debug log the extracted data
+                console.log('Product data extracted:', {
+                    productName,
+                    productDescription,
+                    productNameElement: productNameElement?.outerHTML,
+                    productDescriptionElement: productDescriptionElement?.outerHTML
+                });
+                
                 // Price selectors with fallbacks
                 const originalPriceElement = productCard.querySelector('.original-price') || 
                                            productCard.querySelector('.price.original');
@@ -124,6 +132,12 @@ class ProductCardManager {
                                    productCard.querySelector('.product-image img') || 
                                    productCard.querySelector('img');
                 const imageUrl = productImage ? productImage.src : '';
+                
+                // Debug log for image
+                console.log('Image data:', {
+                    imageUrl,
+                    productImageElement: productImage?.outerHTML
+                });
                 
                 // Create WhatsApp message
                 this.shareOnWhatsApp(productName, productDescription, originalPrice, discountedPrice, imageUrl);
@@ -144,6 +158,16 @@ class ProductCardManager {
         // Owner's WhatsApp number from configuration
         const ownerWhatsAppNumber = WHATSAPP_CONFIG.ownerNumber;
         
+        // Debug log all parameters
+        console.log('ShareOnWhatsApp called with:', {
+            productName,
+            productDescription,
+            originalPrice,
+            discountedPrice,
+            imageUrl,
+            ownerWhatsAppNumber
+        });
+        
         // Construct the message
         let message = `Hi! I'm interested in this product from ${WHATSAPP_CONFIG.businessName}:\n\n`;
         message += `🏷️ *Product:* ${productName}\n`;
@@ -155,6 +179,8 @@ class ProductCardManager {
                 message += ` (was ${originalPrice})`;
             }
             message += `\n`;
+        } else if (discountedPrice) {
+            message += `💰 *Price:* ${discountedPrice}\n`;
         }
         
         if (imageUrl) {
@@ -163,17 +189,22 @@ class ProductCardManager {
         
         message += `\nPlease provide more details about availability and ordering process.`;
         
+        // Debug the final message
+        console.log('Final WhatsApp message:', message);
+        
         // Encode the message for URL
         const encodedMessage = encodeURIComponent(message);
         
-        // Create WhatsApp URL
-        const whatsappUrl = `https://wa.me/message/CR5P2BAITMTBH1`;
+        // Create WhatsApp URL with the message
+        const whatsappUrl = `https://wa.me/${ownerWhatsAppNumber.replace(/[^\d]/g, '')}?text=${encodedMessage}`;
+        
+        console.log('WhatsApp URL:', whatsappUrl);
         
         // Open WhatsApp in new tab/window
         window.open(whatsappUrl, '_blank');
         
         // Log for debugging
-        console.log('WhatsApp sharing:', {
+        console.log('WhatsApp sharing completed:', {
             productName,
             productDescription,
             originalPrice,

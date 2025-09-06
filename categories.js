@@ -1,6 +1,6 @@
 // Configuration
 const WHATSAPP_CONFIG = {
-    ownerNumber: '+919876543210', // Replace with actual owner's WhatsApp number
+    ownerNumber: '+917979914985', // Replace with actual owner's WhatsApp number
     businessName: 'Memory & More'
 };
 
@@ -273,6 +273,16 @@ function shareOnWhatsApp(productName, productDescription, originalPrice, discoun
     // Owner's WhatsApp number from configuration
     const ownerWhatsAppNumber = WHATSAPP_CONFIG.ownerNumber;
     
+    // Debug log all parameters
+    console.log('Categories ShareOnWhatsApp called with:', {
+        productName,
+        productDescription,
+        originalPrice,
+        discountedPrice,
+        imageUrl,
+        ownerWhatsAppNumber
+    });
+    
     // Construct the message
     let message = `Hi! I'm interested in this product from ${WHATSAPP_CONFIG.businessName}:\n\n`;
     message += `🏷️ *Product:* ${productName}\n`;
@@ -294,11 +304,16 @@ function shareOnWhatsApp(productName, productDescription, originalPrice, discoun
     
     message += `\nPlease provide more details about availability and ordering process.`;
     
+    // Debug the final message
+    console.log('Categories Final WhatsApp message:', message);
+    
     // Encode the message for URL
     const encodedMessage = encodeURIComponent(message);
     
     // Create WhatsApp URL
     const whatsappUrl = `https://wa.me/${ownerWhatsAppNumber.replace(/[^\d]/g, '')}?text=${encodedMessage}`;
+    
+    console.log('Categories WhatsApp URL:', whatsappUrl);
     
     // Open WhatsApp in new tab/window
     window.open(whatsappUrl, '_blank');
