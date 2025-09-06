@@ -1,3 +1,9 @@
+// Configuration
+const WHATSAPP_CONFIG = {
+    ownerNumber: '+917979914985', // Replace with actual owner's WhatsApp number
+    businessName: 'Memory & More'
+};
+
 // Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
@@ -83,23 +89,97 @@ class ProductCardManager {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 
-                // Get product info
-                const productCard = btn.closest('.category-item');
-                const productName = productCard.querySelector('h4').textContent;
-                const productPrice = productCard.querySelector('.price').textContent;
+                // Get product info with fallbacks for different card structures
+                const productCard = btn.closest('.category-item, .product-card, .card');
+                if (!productCard) {
+                    console.error('Product card not found');
+                    return;
+                }
                 
-                // Add to cart animation
-                btn.innerHTML = '<i class="fas fa-check"></i> Added!';
-                btn.style.background = '#4ade80';
+                // Try multiple selectors for product name
+                const productNameElement = productCard.querySelector('h4') || 
+                                         productCard.querySelector('.product-title') || 
+                                         productCard.querySelector('.card-title');
+                
+                // Try multiple selectors for product description
+                const productDescriptionElement = productCard.querySelector('.product-info p') || 
+                                                 productCard.querySelector('.product-description') || 
+                                                 productCard.querySelector('.card-description p');
+                
+                const productName = productNameElement ? productNameElement.textContent.trim() : 'Product';
+                const productDescription = productDescriptionElement ? productDescriptionElement.textContent.trim() : 'Premium resin art creation';
+                
+                // Price selectors with fallbacks
+                const originalPriceElement = productCard.querySelector('.original-price') || 
+                                           productCard.querySelector('.price.original');
+                const discountedPriceElement = productCard.querySelector('.discounted-price') || 
+                                             productCard.querySelector('.price') || 
+                                             productCard.querySelector('.current-price');
+                
+                const originalPrice = originalPriceElement ? originalPriceElement.textContent.trim() : '';
+                const discountedPrice = discountedPriceElement ? discountedPriceElement.textContent.trim() : '';
+                
+                // Image selector with fallbacks
+                const productImage = productCard.querySelector('.image-placeholder img') || 
+                                   productCard.querySelector('.product-image img') || 
+                                   productCard.querySelector('img');
+                const imageUrl = productImage ? productImage.src : '';
+                
+                // Create WhatsApp message
+                this.shareOnWhatsApp(productName, productDescription, originalPrice, discountedPrice, imageUrl);
+                
+                // Visual feedback
+                btn.innerHTML = '<i class="fab fa-whatsapp"></i> Sending...';
+                btn.style.background = '#25d366';
                 
                 setTimeout(() => {
-                    btn.innerHTML = 'Add to Cart';
+                    btn.innerHTML = '<i class="fab fa-whatsapp"></i> Buy Now';
                     btn.style.background = '';
                 }, 2000);
-                
-                // You can add actual cart functionality here
-                console.log(`Added to cart: ${productName} - ${productPrice}`);
             });
+        });
+    }
+    
+    shareOnWhatsApp(productName, productDescription, originalPrice, discountedPrice, imageUrl) {
+        // Owner's WhatsApp number from configuration
+        const ownerWhatsAppNumber = WHATSAPP_CONFIG.ownerNumber;
+        
+        // Construct the message
+        let message = `Hi! I'm interested in this product from ${WHATSAPP_CONFIG.businessName}:\n\n`;
+        message += `🏷️ *Product:* ${productName}\n`;
+        message += `📝 *Description:* ${productDescription}\n`;
+        
+        if (originalPrice && discountedPrice) {
+            message += `💰 *Price:* ${discountedPrice}`;
+            if (originalPrice !== discountedPrice) {
+                message += ` (was ${originalPrice})`;
+            }
+            message += `\n`;
+        }
+        
+        if (imageUrl) {
+            message += `🖼️ *Product Image:* ${imageUrl}\n`;
+        }
+        
+        message += `\nPlease provide more details about availability and ordering process.`;
+        
+        // Encode the message for URL
+        const encodedMessage = encodeURIComponent(message);
+        
+        // Create WhatsApp URL
+        const whatsappUrl = `https://wa.me/message/CR5P2BAITMTBH1`;
+        
+        // Open WhatsApp in new tab/window
+        window.open(whatsappUrl, '_blank');
+        
+        // Log for debugging
+        console.log('WhatsApp sharing:', {
+            productName,
+            productDescription,
+            originalPrice,
+            discountedPrice,
+            imageUrl,
+            message
         });
     }
 }
@@ -986,7 +1066,8 @@ function initCategoryNavigation() {
             item.classList.add('active');
             
             // Get category name
-            const categoryName = item.querySelector('.category-name').textContent;
+            const categoryNameElement = item.querySelector('.category-name');
+            const categoryName = categoryNameElement ? categoryNameElement.textContent : 'Category';
             
             // Here you can add logic to filter carousel content based on category
             console.log(`Selected category: ${categoryName}`);

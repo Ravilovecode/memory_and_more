@@ -1,3 +1,9 @@
+// Configuration
+const WHATSAPP_CONFIG = {
+    ownerNumber: '+919876543210', // Replace with actual owner's WhatsApp number
+    businessName: 'Memory & More'
+};
+
 // Categories page JavaScript
 document.addEventListener('DOMContentLoaded', function() {
     initializeCategories();
@@ -208,16 +214,47 @@ function initializeProductActions() {
     addToCartBtns.forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
-            const productTitle = this.closest('.product-card').querySelector('.product-title').textContent;
+            
+            // Get product info with fallbacks
+            const productCard = this.closest('.product-card');
+            if (!productCard) {
+                console.error('Product card not found');
+                return;
+            }
+            
+            // Try multiple selectors for product name
+            const productTitleElement = productCard.querySelector('.product-title') || 
+                                      productCard.querySelector('h4') || 
+                                      productCard.querySelector('.card-title');
+            
+            const productDescriptionElement = productCard.querySelector('.product-description') || 
+                                            productCard.querySelector('.product-info p') || 
+                                            productCard.querySelector('p');
+            
+            const productTitle = productTitleElement ? productTitleElement.textContent.trim() : 'Product';
+            const productDescription = productDescriptionElement ? productDescriptionElement.textContent.trim() : 'Premium resin art creation';
+            
+            // Price elements with fallbacks
+            const priceElement = productCard.querySelector('.price');
+            const originalPriceElement = productCard.querySelector('.original-price');
+            const price = priceElement ? priceElement.textContent.trim() : '';
+            const originalPrice = originalPriceElement ? originalPriceElement.textContent.trim() : '';
+            
+            const productImage = productCard.querySelector('.product-image img') || 
+                               productCard.querySelector('img');
+            const imageUrl = productImage ? productImage.src : '';
+            
+            // Share on WhatsApp
+            shareOnWhatsApp(productTitle, productDescription, originalPrice, price, imageUrl);
             
             // Add loading state
             const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
+            this.innerHTML = '<i class="fab fa-whatsapp"></i> Sending...';
             this.disabled = true;
+            this.style.background = '#25d366';
 
             setTimeout(() => {
-                this.innerHTML = '<i class="fas fa-check"></i> Added!';
-                this.style.background = '#4CAF50';
+                this.innerHTML = '<i class="fab fa-whatsapp"></i> Sent!';
                 
                 setTimeout(() => {
                     this.innerHTML = originalText;
@@ -226,9 +263,54 @@ function initializeProductActions() {
                 }, 1500);
             }, 800);
 
-            showNotification(`${productTitle} added to cart!`);
-            updateCartBadge();
+            showNotification(`WhatsApp message sent for ${productTitle}!`);
         });
+    });
+}
+
+// WhatsApp sharing function for categories page
+function shareOnWhatsApp(productName, productDescription, originalPrice, discountedPrice, imageUrl) {
+    // Owner's WhatsApp number from configuration
+    const ownerWhatsAppNumber = WHATSAPP_CONFIG.ownerNumber;
+    
+    // Construct the message
+    let message = `Hi! I'm interested in this product from ${WHATSAPP_CONFIG.businessName}:\n\n`;
+    message += `🏷️ *Product:* ${productName}\n`;
+    message += `📝 *Description:* ${productDescription}\n`;
+    
+    if (discountedPrice && originalPrice) {
+        message += `💰 *Price:* ${discountedPrice}`;
+        if (originalPrice !== discountedPrice) {
+            message += ` (was ${originalPrice})`;
+        }
+        message += `\n`;
+    } else if (discountedPrice) {
+        message += `💰 *Price:* ${discountedPrice}\n`;
+    }
+    
+    if (imageUrl) {
+        message += `🖼️ *Product Image:* ${imageUrl}\n`;
+    }
+    
+    message += `\nPlease provide more details about availability and ordering process.`;
+    
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Create WhatsApp URL
+    const whatsappUrl = `https://wa.me/${ownerWhatsAppNumber.replace(/[^\d]/g, '')}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in new tab/window
+    window.open(whatsappUrl, '_blank');
+    
+    // Log for debugging
+    console.log('WhatsApp sharing:', {
+        productName,
+        productDescription,
+        originalPrice,
+        discountedPrice,
+        imageUrl,
+        message
     });
 }
 
