@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
 
 *,
 *::before,
@@ -2157,19 +2156,55 @@ p {
     }
     
     .category-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.75rem;
         padding: 0;
     }
     
     .category-item {
-        border-radius: 20px;
+        border-radius: 16px;
     }
     
     .category-item .image-placeholder {
-        height: 180px;
+        height: 120px;
     }
     
+    /* Scale down card-ref elements for mobile */
+    .category-item.card-ref {
+        min-height: 200px;
+        padding: 12px;
+    }
+    
+    .card-ref .product-info h4 { 
+        font-size: 0.75rem;
+        line-height: 1.2;
+    }
+    
+    .card-ref .product-info p { 
+        font-size: 0.65rem;
+    }
+    
+    .card-ref .price { 
+        font-size: 0.8rem;
+    }
+    
+    .card-ref .wishlist-btn { 
+        width: 28px;
+        height: 28px;
+        font-size: 0.7rem;
+    }
+    
+    .card-ref .buy-now-btn { 
+        font-size: 0.65rem;
+        padding: 6px 8px;
+    }
+    
+    .card-ref .card-header,
+    .card-ref .card-footer {
+        padding: 8px;
+    }
+}
+
     .wishlist-btn {
         width: 36px;
         height: 36px;
@@ -2241,23 +2276,56 @@ p {
     }
     
     .category-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
     }
     
     .category-item {
-        max-width: 340px;
-        margin: 0 auto;
-        border-radius: 18px;
+        border-radius: 14px;
     }
     
     .category-item .image-placeholder {
-        height: 200px;
+        height: 100px;
+    }
+    
+    /* Further scale down card-ref elements for small mobile */
+    .category-item.card-ref {
+        min-height: 160px;
+        padding: 8px;
+    }
+    
+    .card-ref .product-info h4 { 
+        font-size: 0.65rem;
+        line-height: 1.1;
+    }
+    
+    .card-ref .product-info p { 
+        font-size: 0.55rem;
+    }
+    
+    .card-ref .price { 
+        font-size: 0.7rem;
+    }
+    
+    .card-ref .wishlist-btn { 
+        width: 24px;
+        height: 24px;
+        font-size: 0.6rem;
+    }
+    
+    .card-ref .buy-now-btn { 
+        font-size: 0.55rem;
+        padding: 4px 6px;
+    }
+    
+    .card-ref .card-header,
+    .card-ref .card-footer {
+        padding: 6px;
     }
     
     .wishlist-btn {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         top: 16px;
         right: 16px;
     }
