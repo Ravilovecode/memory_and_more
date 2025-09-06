@@ -4,6 +4,46 @@ const WHATSAPP_CONFIG = {
     businessName: 'Memory & More'
 };
 
+// Mobile debugging function
+function logMobileDebug(message, data = null) {
+    console.log(`[MOBILE DEBUG] ${message}`, data);
+    
+    // Also log to a visible element for mobile debugging if in debug mode
+    if (window.location.hash.includes('debug') || localStorage.getItem('debug') === 'true') {
+        let debugElement = document.getElementById('mobile-debug');
+        if (!debugElement) {
+            debugElement = document.createElement('div');
+            debugElement.id = 'mobile-debug';
+            debugElement.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background: rgba(0,0,0,0.8);
+                color: white;
+                padding: 10px;
+                font-size: 12px;
+                z-index: 99999;
+                max-height: 200px;
+                overflow-y: auto;
+                font-family: monospace;
+            `;
+            document.body.appendChild(debugElement);
+        }
+        debugElement.innerHTML += `<div>${new Date().toLocaleTimeString()}: ${message}</div>`;
+        if (data) {
+            debugElement.innerHTML += `<div style="margin-left: 20px;">${JSON.stringify(data, null, 2)}</div>`;
+        }
+        debugElement.scrollTop = debugElement.scrollHeight;
+    }
+}
+
+// Detect mobile device
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+           window.innerWidth <= 768;
+}
+
 // Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
@@ -85,58 +125,108 @@ class ProductCardManager {
     
     initBuyNowButtons() {
         const buyNowBtns = document.querySelectorAll('.buy-now-btn');
+        logMobileDebug(`Found ${buyNowBtns.length} buy now buttons`);
+        
         buyNowBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
+                logMobileDebug('Buy now button clicked');
                 
                 // Get product info with fallbacks for different card structures
-                const productCard = btn.closest('.category-item, .product-card, .card');
+                const productCard = btn.closest('.category-item, .product-card, .card, .carousel-card');
                 if (!productCard) {
+                    logMobileDebug('ERROR: Product card not found');
                     console.error('Product card not found');
                     return;
                 }
                 
-                // Try multiple selectors for product name
-                const productNameElement = productCard.querySelector('h4') || 
-                                         productCard.querySelector('.product-title') || 
-                                         productCard.querySelector('.card-title');
-                
-                // Try multiple selectors for product description
-                const productDescriptionElement = productCard.querySelector('.product-info p') || 
-                                                 productCard.querySelector('.product-description') || 
-                                                 productCard.querySelector('.card-description p');
-                
-                const productName = productNameElement ? productNameElement.textContent.trim() : 'Product';
-                const productDescription = productDescriptionElement ? productDescriptionElement.textContent.trim() : 'Premium resin art creation';
-                
-                // Debug log the extracted data
-                console.log('Product data extracted:', {
-                    productName,
-                    productDescription,
-                    productNameElement: productNameElement?.outerHTML,
-                    productDescriptionElement: productDescriptionElement?.outerHTML
+                logMobileDebug('Found product card', {
+                    className: productCard.className,
+                    tagName: productCard.tagName
                 });
                 
-                // Price selectors with fallbacks
+                // Enhanced selectors for product name with better mobile compatibility
+                const productNameElement = productCard.querySelector('.product-info h4') || 
+                                         productCard.querySelector('h4') || 
+                                         productCard.querySelector('.product-title') || 
+                                         productCard.querySelector('.card-title') ||
+                                         productCard.querySelector('.card-header h4') ||
+                                         productCard.querySelector('h3') ||
+                                         productCard.querySelector('.title');
+                
+                // Enhanced selectors for product description with better mobile compatibility
+                const productDescriptionElement = productCard.querySelector('.product-info p') || 
+                                                 productCard.querySelector('.product-description') || 
+                                                 productCard.querySelector('.card-description p') ||
+                                                 productCard.querySelector('.card-header .product-info p') ||
+                                                 productCard.querySelector('.description') ||
+                                                 productCard.querySelector('p:not(.price):not(.original-price):not(.discounted-price)');
+                
+                // Extract text content with better error handling
+                let productName = 'Product';
+                let productDescription = 'Premium resin art creation';
+                
+                if (productNameElement) {
+                    productName = productNameElement.textContent || productNameElement.innerText || 'Product';
+                    productName = productName.trim();
+                }
+                
+                if (productDescriptionElement) {
+                    productDescription = productDescriptionElement.textContent || productDescriptionElement.innerText || 'Premium resin art creation';
+                    productDescription = productDescription.trim();
+                }
+                
+                logMobileDebug('Extracted product data', {
+                    productName,
+                    productDescription,
+                    hasNameElement: !!productNameElement,
+                    hasDescElement: !!productDescriptionElement
+                });
+                
+                // Enhanced price selectors with better mobile compatibility
                 const originalPriceElement = productCard.querySelector('.original-price') || 
-                                           productCard.querySelector('.price.original');
+                                           productCard.querySelector('.price.original') ||
+                                           productCard.querySelector('.was-price') ||
+                                           productCard.querySelector('.old-price');
+                                           
                 const discountedPriceElement = productCard.querySelector('.discounted-price') || 
-                                             productCard.querySelector('.price') || 
-                                             productCard.querySelector('.current-price');
+                                             productCard.querySelector('.price:not(.original):not(.was-price):not(.old-price)') || 
+                                             productCard.querySelector('.current-price') ||
+                                             productCard.querySelector('.sale-price') ||
+                                             productCard.querySelector('.now-price');
                 
-                const originalPrice = originalPriceElement ? originalPriceElement.textContent.trim() : '';
-                const discountedPrice = discountedPriceElement ? discountedPriceElement.textContent.trim() : '';
+                let originalPrice = '';
+                let discountedPrice = '';
                 
-                // Image selector with fallbacks
+                if (originalPriceElement) {
+                    originalPrice = (originalPriceElement.textContent || originalPriceElement.innerText || '').trim();
+                }
+                
+                if (discountedPriceElement) {
+                    discountedPrice = (discountedPriceElement.textContent || discountedPriceElement.innerText || '').trim();
+                }
+                
+                // Enhanced image selector with better mobile compatibility
                 const productImage = productCard.querySelector('.image-placeholder img') || 
                                    productCard.querySelector('.product-image img') || 
-                                   productCard.querySelector('img');
-                const imageUrl = productImage ? productImage.src : '';
+                                   productCard.querySelector('.card-image img') ||
+                                   productCard.querySelector('img') ||
+                                   productCard.querySelector('.image img');
+                                   
+                let imageUrl = '';
+                if (productImage) {
+                    imageUrl = productImage.src || productImage.getAttribute('src') || '';
+                }
                 
-                // Debug log for image
-                console.log('Image data:', {
-                    imageUrl,
-                    productImageElement: productImage?.outerHTML
+                logMobileDebug('Extracted price and image data', {
+                    originalPrice,
+                    discountedPrice,
+                    imageUrl: imageUrl.substring(0, 100) + '...',
+                    hasPriceElements: {
+                        original: !!originalPriceElement,
+                        discounted: !!discountedPriceElement
+                    },
+                    hasImage: !!productImage
                 });
                 
                 // Create WhatsApp message
@@ -159,59 +249,92 @@ class ProductCardManager {
         const ownerWhatsAppNumber = WHATSAPP_CONFIG.ownerNumber;
         
         // Debug log all parameters
-        console.log('ShareOnWhatsApp called with:', {
+        logMobileDebug('ShareOnWhatsApp called', {
             productName,
             productDescription,
             originalPrice,
             discountedPrice,
-            imageUrl,
+            imageUrl: imageUrl ? imageUrl.substring(0, 100) + '...' : 'No image',
             ownerWhatsAppNumber
         });
         
-        // Construct the message
-        let message = `Hi! I'm interested in this product from ${WHATSAPP_CONFIG.businessName}:\n\n`;
-        message += `🏷️ *Product:* ${productName}\n`;
-        message += `📝 *Description:* ${productDescription}\n`;
+        // Clean and validate product data
+        const cleanProductName = productName && productName.trim() ? productName.trim() : 'Product';
+        const cleanProductDescription = productDescription && productDescription.trim() ? productDescription.trim() : 'Premium resin art creation';
+        const cleanOriginalPrice = originalPrice && originalPrice.trim() ? originalPrice.trim() : '';
+        const cleanDiscountedPrice = discountedPrice && discountedPrice.trim() ? discountedPrice.trim() : '';
         
-        if (originalPrice && discountedPrice) {
-            message += `💰 *Price:* ${discountedPrice}`;
-            if (originalPrice !== discountedPrice) {
-                message += ` (was ${originalPrice})`;
-            }
-            message += `\n`;
-        } else if (discountedPrice) {
-            message += `💰 *Price:* ${discountedPrice}\n`;
-        }
-        
-        if (imageUrl) {
-            message += `🖼️ *Product Image:* ${imageUrl}\n`;
-        }
-        
-        message += `\nPlease provide more details about availability and ordering process.`;
-        
-        // Debug the final message
-        console.log('Final WhatsApp message:', message);
-        
-        // Encode the message for URL
-        const encodedMessage = encodeURIComponent(message);
-        
-        // Create WhatsApp URL with the message
-        const whatsappUrl = `https://wa.me/${ownerWhatsAppNumber.replace(/[^\d]/g, '')}?text=${encodedMessage}`;
-        
-        console.log('WhatsApp URL:', whatsappUrl);
-        
-        // Open WhatsApp in new tab/window
-        window.open(whatsappUrl, '_blank');
-        
-        // Log for debugging
-        console.log('WhatsApp sharing completed:', {
-            productName,
-            productDescription,
-            originalPrice,
-            discountedPrice,
-            imageUrl,
-            message
+        logMobileDebug('Cleaned product data', {
+            cleanProductName,
+            cleanProductDescription,
+            cleanOriginalPrice,
+            cleanDiscountedPrice
         });
+        
+        // Construct the message with mobile-friendly formatting
+        let message = `Hi! I'm interested in this product from ${WHATSAPP_CONFIG.businessName}:%0A%0A`;
+        message += `Product: ${cleanProductName}%0A`;
+        message += `Description: ${cleanProductDescription}%0A`;
+        
+        if (cleanOriginalPrice && cleanDiscountedPrice) {
+            message += `Price: ${cleanDiscountedPrice}`;
+            if (cleanOriginalPrice !== cleanDiscountedPrice) {
+                message += ` (was ${cleanOriginalPrice})`;
+            }
+            message += `%0A`;
+        } else if (cleanDiscountedPrice) {
+            message += `Price: ${cleanDiscountedPrice}%0A`;
+        }
+        
+        // Convert relative image URLs to absolute URLs for mobile compatibility
+        if (imageUrl) {
+            let fullImageUrl = imageUrl;
+            if (imageUrl.startsWith('./') || imageUrl.startsWith('../') || (!imageUrl.startsWith('http') && !imageUrl.startsWith('//'))) {
+                // Make relative URLs absolute
+                fullImageUrl = window.location.origin + '/' + imageUrl.replace(/^\.\//, '');
+            }
+            message += `Image: ${fullImageUrl}%0A`;
+        }
+        
+        message += `%0APlease provide more details about availability and ordering process.`;
+        
+        logMobileDebug('Final message constructed', {
+            message: message.substring(0, 200) + '...',
+            messageLength: message.length
+        });
+        
+        // Clean phone number (remove all non-digit characters)
+        const cleanPhoneNumber = ownerWhatsAppNumber.replace(/[^\d]/g, '');
+        
+        // Create WhatsApp URL - use pre-encoded message for better mobile compatibility
+        const whatsappUrl = `https://wa.me/${cleanPhoneNumber}?text=${message}`;
+        
+        logMobileDebug('WhatsApp URL created', {
+            url: whatsappUrl.substring(0, 150) + '...',
+            urlLength: whatsappUrl.length,
+            cleanPhoneNumber
+        });
+        
+        // Check if URL is too long (mobile WhatsApp has limitations)
+        if (whatsappUrl.length > 2048) {
+            logMobileDebug('URL too long, using shorter version');
+            console.warn('WhatsApp URL might be too long for mobile devices');
+            // Create shorter message for mobile
+            const shortMessage = `Hi! I'm interested in: ${cleanProductName}%0APrice: ${cleanDiscountedPrice}%0A%0APlease provide more details.`;
+            const shortUrl = `https://wa.me/${cleanPhoneNumber}?text=${shortMessage}`;
+            logMobileDebug('Short URL created', {
+                shortUrl: shortUrl.substring(0, 150) + '...',
+                shortUrlLength: shortUrl.length
+            });
+            window.open(shortUrl, '_blank');
+        } else {
+            logMobileDebug('Opening WhatsApp with full URL');
+            // Open WhatsApp in new tab/window
+            window.open(whatsappUrl, '_blank');
+        }
+        
+        // Log completion
+        logMobileDebug('WhatsApp sharing completed successfully');
     }
 }
 
@@ -1144,6 +1267,43 @@ function initCategoryNavigation() {
 
 // Initialize all components when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize mobile debugging
+    if (isMobileDevice()) {
+        logMobileDebug('Mobile device detected', {
+            userAgent: navigator.userAgent,
+            screenWidth: window.innerWidth,
+            screenHeight: window.innerHeight,
+            devicePixelRatio: window.devicePixelRatio
+        });
+        
+        // Enable debug mode on mobile with special URL parameter or localStorage
+        if (window.location.hash.includes('debug') || localStorage.getItem('debug') === 'true') {
+            logMobileDebug('Debug mode enabled for mobile');
+            // Add debug button to enable/disable debugging
+            const debugToggle = document.createElement('button');
+            debugToggle.innerHTML = 'Toggle Debug';
+            debugToggle.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                z-index: 99998;
+                background: #007bff;
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                font-size: 12px;
+            `;
+            debugToggle.addEventListener('click', () => {
+                const debugElement = document.getElementById('mobile-debug');
+                if (debugElement) {
+                    debugElement.style.display = debugElement.style.display === 'none' ? 'block' : 'none';
+                }
+            });
+            document.body.appendChild(debugToggle);
+        }
+    }
+    
     new SearchManager();
     new ProductCardManager();
 });
