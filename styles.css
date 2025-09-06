@@ -951,6 +951,16 @@ p {
     z-index: 21;
 }
 
+.carousel-btn.prev-btn {
+    position: absolute;
+    left: 10px;
+}
+
+.carousel-btn.next-btn {
+    position: absolute;
+    right: 36px;
+}
+
 .carousel-btn:hover {
     background: #667eea;
     color: white;
@@ -960,28 +970,6 @@ p {
 
 .carousel-btn:active {
     transform: scale(0.95);
-}
-
-/* Carousel Indicators */
-.carousel-indicators {
-    text-align: center;
-    margin-top: 0.5rem;
-    font-size: 1rem;
-    color: #666;
-    font-weight: 500;
-}
-
-.current-slide {
-    color: #667eea;
-    font-weight: 700;
-}
-
-.separator {
-    margin: 0 0.5rem;
-}
-
-.total-slides {
-    color: #999;
 }
 
 /* Small Cards Section */
@@ -997,7 +985,7 @@ p {
     gap: 20px;
     width: 100%;
     margin: 0 auto;
-    /* padding: 0 20px; */
+    padding: 0 20px;
 }
 
 .small-card {
@@ -1010,6 +998,7 @@ p {
     aspect-ratio: 1;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .small-card:hover {
@@ -1018,9 +1007,10 @@ p {
 }
 
 .small-card-image {
-    flex: 1;
+    height: 100%;
     overflow: hidden;
     position: relative;
+    flex-shrink: 0;
 }
 
 .small-card-image img {
@@ -1036,9 +1026,7 @@ p {
 }
 
 .small-card-content {
-    padding: 12px 16px;
-    text-align: center;
-    background: white;
+    display: none;
 }
 
 .small-card-content h4 {
@@ -1047,33 +1035,80 @@ p {
     font-weight: 600;
     color: #374151;
     font-family: 'Inter', sans-serif;
+    line-height: 1.2;
+    text-align: center;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 /* Responsive Design for Small Cards */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .small-cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-        padding: 0 15px;
-    }
-    
-    .small-card-content h4 {
-        font-size: 0.8rem;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 16px;
+        padding: 0 16px;
     }
     
     .small-card-content {
-        padding: 8px 12px;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .small-cards-grid {
+        grid-template-columns: repeat(7, 1fr);
+        gap: 12px;
+        padding: 0 12px;
+    }
+    
+    .small-card-content h4 {
+        font-size: 0.75rem;
+        line-height: 1.1;
+    }
+    
+    .small-card-content {
+        padding: 4px 6px;
+    }
+    
+    .small-card {
+        border-radius: 8px;
     }
 }
 
 @media (max-width: 480px) {
     .small-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 8px;
+        padding: 0 8px;
     }
     
     .small-cards-section {
         padding: 30px 0;
+    }
+    
+    .small-card-content h4 {
+        font-size: 0.65rem;
+        line-height: 1.1;
+    }
+    
+    .small-card-content {
+        padding: 3px 4px;
+    }
+}
+
+@media (max-width: 360px) {
+    .small-cards-grid {
+        gap: 6px;
+        padding: 0 6px;
+    }
+    
+    .small-card-content h4 {
+        font-size: 0.6rem;
+        line-height: 1.0;
+    }
+    
+    .small-card-content {
+        padding: 2px 3px;
     }
 }
 
@@ -1081,7 +1116,7 @@ p {
 @media (max-width: 1200px) {
     .carousel-card {
         flex: 0 0 calc(40% - 1rem); /* Ensures 2.5 cards visible */
-        height: 210px;
+        height: 180px;
     }
     
     .card-title {
@@ -1097,7 +1132,7 @@ p {
 @media (max-width: 1024px) {
     .carousel-card {
         flex: 0 0 calc(40% - 1.5rem); /* Maintains 2.5 cards */
-        height: 190px;
+        height: 160px;
     }
     
     .carousel-container {
@@ -1154,7 +1189,7 @@ p {
     
     .carousel-card {
         flex: 0 0 calc(40% - 1rem); /* Ensures 2.5 cards visible on mobile */
-        height: 170px;
+        height: 140px;
     }
     
     .card-overlay {
@@ -1243,7 +1278,7 @@ p {
     
     .carousel-card {
         flex: 0 0 calc(40% - 0.5rem); /* Adjusted for better fit with reduced gap */
-        height: 150px; /* Increased height for better visibility */
+        height: 120px; /* Increased height for better visibility */
     }
     
     .card-overlay {
@@ -1312,7 +1347,7 @@ p {
 @media (max-width: 360px) {
     .carousel-card {
         flex: 0 0 calc(38% - 0.5rem); /* Even smaller for very small screens */
-        height: 130px;
+        height: 100px;
     }
     
     .carousel-track {

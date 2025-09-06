@@ -259,7 +259,9 @@ class HeroCarousel {
     
     updateTotalSlides() {
         const maxSlides = Math.max(1, this.totalCards - Math.floor(this.cardsPerView) + 1);
-        this.totalSlidesElement.textContent = maxSlides;
+        if (this.totalSlidesElement) {
+            this.totalSlidesElement.textContent = maxSlides;
+        }
     }
     
     bindEvents() {
@@ -341,7 +343,9 @@ class HeroCarousel {
         this.track.style.transform = `translateX(${translateX}px)`;
         
         // Update slide indicator
-        this.currentSlideElement.textContent = this.currentSlide + 1;
+        if (this.currentSlideElement) {
+            this.currentSlideElement.textContent = this.currentSlide + 1;
+        }
         
         // Update button states
         this.updateButtonStates();
@@ -353,11 +357,19 @@ class HeroCarousel {
     updateButtonStates() {
         const maxSlide = Math.max(0, this.totalCards - Math.floor(this.cardsPerView));
         
-        this.prevBtn.style.opacity = this.currentSlide === 0 ? '0.5' : '1';
-        this.nextBtn.style.opacity = this.currentSlide >= maxSlide ? '0.5' : '1';
+        // Left arrow: hidden initially, shows after scrolling right
+        if (this.currentSlide === 0) {
+            this.prevBtn.style.display = 'none';
+        } else {
+            this.prevBtn.style.display = 'flex';
+        }
         
-        this.prevBtn.style.pointerEvents = this.currentSlide === 0 ? 'none' : 'all';
-        this.nextBtn.style.pointerEvents = this.currentSlide >= maxSlide ? 'none' : 'all';
+        // Right arrow: shows initially, hidden at the end
+        if (this.currentSlide >= maxSlide) {
+            this.nextBtn.style.display = 'none';
+        } else {
+            this.nextBtn.style.display = 'flex';
+        }
     }
     
     animateVisibleCards() {
