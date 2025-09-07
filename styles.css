@@ -2012,7 +2012,7 @@ p {
     left: 0;
     right: 0;
     height: 45%;
-    background: linear-gradient(135deg, #ff9500 0%, #ff8c00 100%);
+    background: black;
     border-radius: 16px 16px 0 0;
     z-index: 1;
 }
@@ -2025,7 +2025,7 @@ p {
     left: 0;
     right: 0;
     height: 8%;
-    background: linear-gradient(135deg, #ff9500 0%, #ff8c00 100%);
+    background: black;
     border-radius: 0 0 100% 100% / 0 0 60px 60px;
     z-index: 1;
 }
@@ -2156,7 +2156,7 @@ p {
     position: static;
     width: auto; 
     padding: 12px 20px; 
-    background: #133a59; 
+    background: black; 
     border-radius: 999px; 
     box-shadow: 0 6px 16px rgba(19,58,89,0.25);
 }
