@@ -659,32 +659,9 @@ class HeroCarousel {
     }
     
     updateButtonStates() {
-        // Use the same mobile-optimized calculation for max slide
-        let maxSlide;
-        if (this.cardsPerView >= this.totalCards) {
-            maxSlide = 0;
-        } else if (window.innerWidth <= 768) {
-            // Mobile/tablet: be more restrictive
-            maxSlide = Math.max(0, this.totalCards - 2);
-        } else {
-            // Desktop: use the regular calculation
-            const visibleCards = Math.floor(this.cardsPerView);
-            maxSlide = Math.max(0, this.totalCards - visibleCards);
-        }
-        
-        // Left arrow: hidden initially, shows after scrolling right
-        if (this.currentSlide === 0) {
-            this.prevBtn.style.display = 'none';
-        } else {
-            this.prevBtn.style.display = 'flex';
-        }
-        
-        // Right arrow: shows initially, hidden at the end
-        if (this.currentSlide >= maxSlide) {
-            this.nextBtn.style.display = 'none';
-        } else {
-            this.nextBtn.style.display = 'flex';
-        }
+        // Hide both arrows - carousel is scroll-only
+        this.prevBtn.style.display = 'none';
+        this.nextBtn.style.display = 'none';
     }
     
     animateVisibleCards() {
